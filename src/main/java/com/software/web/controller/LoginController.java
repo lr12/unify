@@ -76,5 +76,9 @@ public class LoginController {
 
             return "main/home";
         }
+    @RequestMapping(value="circle.do",method = RequestMethod.GET)
+    public String circle(HttpServletRequest request, HttpServletResponse response, ModelMap model){
 
+        return "main/circle";
+    }
 }
