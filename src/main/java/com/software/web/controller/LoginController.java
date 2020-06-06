@@ -74,7 +74,7 @@ public class LoginController {
     @RequestMapping(value="home.do",method = RequestMethod.GET)
     public String home(HttpServletRequest request, HttpServletResponse response, ModelMap model){
 
-            return "home";
+            return "main/home";
         }
 
 }
