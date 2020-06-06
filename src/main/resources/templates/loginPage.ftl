@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>µÇÂ¼½çÃæ</title>
+    <title>ç™»å½•ç•Œé¢</title>
 
 <#include "./pop/common_css.ftl">
 
@@ -31,20 +31,20 @@
                     <form role="form" action="login.do"  method="post" style="margin-top: 36px;">
                         <fieldset>
                             <div class="form-group" style="margin-bottom: 20px;">
-                                <input class="form-control" id="userid" name="userid" style="height: 40px;" placeholder="ÇëÊäÈëÓÃ»§Ãû" <#if loginFail?if_exists >value="${userid}" </#if>
+                                <input class="form-control" id="userid" name="userid" style="height: 40px;" placeholder="è¯·è¾“å…¥ç”¨æˆ·å" <#if loginFail?if_exists >value="${userid}" </#if>
                             </div>
                             <div class="form-group"  style="margin-bottom: 20px;margin-top: 30px;">
-                                <input class="form-control" id="password" name="password" style="height: 40px;" placeholder="ÇëÊäÈëÃÜÂë" name="password" type="password" <#if loginFail?if_exists >value="${password}" </#if>>
+                                <input class="form-control" id="password" name="password" style="height: 40px;" placeholder="è¯·è¾“å…¥å¯†ç " name="password" type="password" <#if loginFail?if_exists >value="${password}" </#if>>
                             </div>
-                        <#if loginFail?if_exists ><p style="color:red">ÓÃ»§ÃûÃÜÂë´íÎó</p></#if>
+                        <#if loginFail?if_exists ><p style="color:red">ç”¨æˆ·åå¯†ç é”™è¯¯</p></#if>
                             <div class="checkbox">
                                 <label>
-                                    <input name="remember" type="checkbox" value="Remember Me">¼Ç×¡ÃÜÂë
+                                    <input name="remember" type="checkbox" value="Remember Me">è®°ä½å¯†ç 
                                 </label>
                             </div>
 
                             <!-- Change this to a button or input when using this as a form -->
-                            <button  style="background-color: #337ab7;border-color: #337ab7;margin-top: 17px;" class="btn btn-lg btn-success btn-block">µÇÂ¼</button>
+                            <button  style="background-color: #337ab7;border-color: #337ab7;margin-top: 17px;" class="btn btn-lg btn-success btn-block">ç™»å½•</button>
                         </fieldset>
                     </form>
                 </div>
