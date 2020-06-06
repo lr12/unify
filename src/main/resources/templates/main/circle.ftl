@@ -65,35 +65,36 @@
                                     <div class="carousel-inner">
                                         <div class="item active">
                                             <img src="png/2.jpeg" style="display: inline-block;"  alt="First slide" >
+                                            <div class="carousel-caption" style="font-size:20px">惺忪的双眼看着妈妈</div>
                                         </div>
                                         <div class="item">
                                             <img src="png/3.jpeg" style="display: inline-block;"  alt="First slide" >
-
+                                            <div class="carousel-caption" style="font-size:20px">我宣誓要当个好宝宝</div>
                                         </div>
                                         <div class="item">
                                             <img src="png/5.jpeg" style="display: inline-block;"  alt="First slide" >
 
-
+                                            <div class="carousel-caption" style="font-size:20px">全家福，原来这是我父母</div>
                                         </div>
                                         <div class="item">
 
                                             <img src="png/6.jpeg" style="display: inline-block;"  alt="First slide"  >
-
+                                            <div class="carousel-caption" style="font-size:20px">这是啥，红红的</div>
                                         </div>
                                         <div class="item">
                                             <img src="png/7.jpeg" style="display: inline-block;"  alt="First slide" >
 
-
+                                            <div class="carousel-caption" style="font-size:20px">我和爸爸玩耍</div>
                                         </div>
                                         <div class="item">
 
                                             <img src="png/8.jpeg" style="display: inline-block;"  alt="First slide" >
-
+                                            <div class="carousel-caption" style="font-size:20px">我和奶奶学说话</div>
                                         </div>
                                         <div class="item">
                                             <img src="png/9.jpeg" style="display: inline-block;"  alt="First slide" >
 
-
+                                            <div class="carousel-caption" style="font-size:20px">小猪小象伴我成长</div>
                                         </div>
                                     </div>
                                     <!-- 轮播（Carousel）导航 -->
