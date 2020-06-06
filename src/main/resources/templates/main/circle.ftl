@@ -30,7 +30,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">test</h1>
+                <h1 class="page-header">恬恬相片集</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -115,7 +115,8 @@
 
             </div>
             <!-- /.panel -->
-
+            <audio src="someaudio.wav">
+            </audio>
         </div>
         <!-- /.col-lg-8 -->
 
@@ -139,11 +140,11 @@
 <script>
        // $("#upUser").modal();
 </script>
-<!-- <script>
-  setTimeout(function(){
-    $('.odometer').html(423234234);
-  }, 1000);
-</script> -->
+ <script>
+     $('.carousel').carousel({
+         interval: 1000
+     });
+</script>
 </body>
 
 </html>
