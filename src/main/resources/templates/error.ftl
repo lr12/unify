@@ -12,9 +12,9 @@
 <body>
 <div class="error_wrapper">
     <div class="error_div">
-        <h2>您访问的页面暂时无法显示</h2>
-        <span>您正在浏览的页面可能已被删除、重命名或暂时不可用</span><br><br>
-        <#--<span><span id="count">6</span>秒后自动跳转，如果你的浏览器没有自动跳转，请<a href=${errorURL }>点击这里>></a></span>-->
+        <h2>鎮ㄨ闂殑椤甸潰鏆傛椂鏃犳硶鏄剧ず</h2>
+        <span>鎮ㄦ鍦ㄦ祻瑙堢殑椤甸潰鍙兘宸茶鍒犻櫎銆侀噸鍛藉悕鎴栨殏鏃朵笉鍙敤</span><br><br>
+        <#--<span><span id="count">6</span>绉掑悗鑷姩璺宠浆锛屽鏋滀綘鐨勬祻瑙堝櫒娌℃湁鑷姩璺宠浆锛岃<a href=${errorURL }>鐐瑰嚮杩欓噷>></a></span>-->
     </div>
 </div>
 </body>
