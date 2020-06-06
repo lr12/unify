@@ -40,7 +40,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-bar-chart-o fa-fw"></i>测试1
+                        <i class="fa fa-bar-chart-o fa-fw"></i>恬恬照片
 
                     </div>
                     <!-- /.panel-heading -->
@@ -57,21 +57,36 @@
                                         <li data-target="#myCarousel" data-slide-to="1"></li>
                                         <li data-target="#myCarousel" data-slide-to="2"></li>
                                         <li data-target="#myCarousel" data-slide-to="3"></li>
+                                        <li data-target="#myCarousel" data-slide-to="4"></li>
+                                        <li data-target="#myCarousel" data-slide-to="5"></li>
+                                        <li data-target="#myCarousel" data-slide-to="6"></li>
                                     </ol>
                                     <!-- 轮播（Carousel）项目 -->
                                     <div class="carousel-inner">
                                         <div class="item active">
-                                            <img src="png/2.jpeg" style="display: inline-block;"  alt="First slide" width="120px">
-                                            <img src="png/3.jpeg" style="display: inline-block;"  alt="First slide"  width="120px">
+                                            <img src="png/2.jpeg" style="display: inline-block;"  alt="First slide" >
+                                        </div>
+                                        <div class="item">
+                                            <img src="png/3.jpeg" style="display: inline-block;"  alt="First slide" >
 
                                         </div>
                                         <div class="item">
                                             <img src="png/5.jpeg" style="display: inline-block;"  alt="First slide" >
+
+
+                                        </div>
+                                        <div class="item">
+
                                             <img src="png/6.jpeg" style="display: inline-block;"  alt="First slide"  >
 
                                         </div>
                                         <div class="item">
                                             <img src="png/7.jpeg" style="display: inline-block;"  alt="First slide" >
+
+
+                                        </div>
+                                        <div class="item">
+
                                             <img src="png/8.jpeg" style="display: inline-block;"  alt="First slide" >
 
                                         </div>
