@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" >案件结案智能辅助系统</a>
+                <a class="navbar-brand" >娴嬭瘯绯荤粺</a>
             </div>
 
            <#include "./setting.ftl" >

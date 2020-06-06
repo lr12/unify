@@ -81,7 +81,7 @@
                                          <button  type="button" id='ajcxButton' name='ajcxButton'
                                                    class="btn btn-primary"
                                                    data-toggle="modal"
-                                                   data-target="#ajylModal">???????
+                                                   data-target="#ajylModal">测试
                                     </button>
                                     </div>
 
@@ -118,7 +118,7 @@
                                 <button  type="button" id='ajcxButton' name='ajcxButton'
                                          class="btn btn-primary"
                                          data-toggle="modal"
-                                         data-target="#ajylModal" style="float: right">???????
+                                         data-target="#ajylModal" style="float: right">提交
                                 </button>
                             </div>
                         </div>

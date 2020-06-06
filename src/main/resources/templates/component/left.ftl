@@ -14,28 +14,28 @@
                         </li>
 
                         <li>
-                            <a href="home.do" class="active"><i class="fa fa-home fa-fw"></i> 神经网络模型构建</a>
+                            <a href="home.do" class="active"><i class="fa fa-home fa-fw"></i> 棣栭〉</a>
                         </li>
 
 
                         <li>
-                            <a ><i class="fa fa-dashboard fa-fw"></i> 数据样本管理<span class="fa arrow"></span></a>
+                            <a ><i class="fa fa-dashboard fa-fw"></i> 娴嬭瘯1<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="localSimilar.do" >数据样本导入</a>
+                                    <a href="#" >娴嬭瘯1</a>
                                 </li>
                                 <li>
-                                    <a href="xztSimilar.do" >数据样本查看</a>
+                                    <a href="#" >娴嬭瘯2</a>
                                 </li>
                             </ul>
                         </li>
 
                         <li>
-                            <a href="surveyReport.do" ><i class="fa fa-random   fa-fw"></i> 模型预测</a>
+                            <a href="#" ><i class="fa fa-random   fa-fw"></i> 娴嬭瘯3</a>
                         </li>
 
                         <li>
-                            <a href="surveyReport.do" ><i class="fa fa-random   fa-fw"></i> 标签配置</a>
+                            <a href="#" ><i class="fa fa-random   fa-fw"></i> 娴嬭瘯4surveyReport.do</a>
                         </li>
 
                     </ul>
