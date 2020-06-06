@@ -66,13 +66,13 @@
 
                                         </div>
                                         <div class="item">
-                                            <img src="png/5.jpeg" style="display: inline-block;"  alt="First slide" width="120px">
-                                            <img src="png/6.jpeg" style="display: inline-block;"  alt="First slide" width="120px" >
+                                            <img src="png/5.jpeg" style="display: inline-block;"  alt="First slide" >
+                                            <img src="png/6.jpeg" style="display: inline-block;"  alt="First slide"  >
 
                                         </div>
                                         <div class="item">
-                                            <img src="png/7.jpeg" style="display: inline-block;"  alt="First slide" width="120px">
-                                            <img src="png/8.jpeg" style="display: inline-block;"  alt="First slide" width="120px" >
+                                            <img src="png/7.jpeg" style="display: inline-block;"  alt="First slide" >
+                                            <img src="png/8.jpeg" style="display: inline-block;"  alt="First slide" >
 
                                         </div>
                                         <div class="item">
