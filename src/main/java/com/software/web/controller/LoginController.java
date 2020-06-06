@@ -60,9 +60,15 @@ public class LoginController {
     }
 
     @RequestMapping(value="test.do",method = RequestMethod.GET)
-    public String test(HttpServletRequest request, HttpServletResponse response, ModelMap model){
+    @ResponseBody
+    public List<String> test(HttpServletRequest request, HttpServletResponse response, ModelMap model){
 
-        return "main/test";
+        List<String> result = new ArrayList<>();
+        result.add("周仪大美女老婆你好，这是你老公的服务器");
+        //YhModel yhModel=yhService.getYhModelByUserId("lirui");
+        //System.out.println(yhModel.getPassword());
+        //logger.info("测试用户信息:%s",yhModel.toString());
+        return result;
     }
 
 
