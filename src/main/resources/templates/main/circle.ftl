@@ -56,23 +56,29 @@
                                         <li data-target="#myCarousel" data-slide-o="0" class="active"></li>
                                         <li data-target="#myCarousel" data-slide-to="1"></li>
                                         <li data-target="#myCarousel" data-slide-to="2"></li>
+                                        <li data-target="#myCarousel" data-slide-to="3"></li>
                                     </ol>
                                     <!-- 轮播（Carousel）项目 -->
                                     <div class="carousel-inner">
                                         <div class="item active">
-                                            <img src="png/1.jpeg" style="display: inline-block;"  alt="First slide" width="100px">
-                                            <img src="png/2.jpeg" style="display: inline-block;"  alt="First slide"  width="100px">>
-                                            <img src="png/3.jpeg" style="display: inline-block;"  alt="First slide" width="100px">>
+                                            <img src="png/2.jpeg" style="display: inline-block;"  alt="First slide" width="120px">
+                                            <img src="png/3.jpeg" style="display: inline-block;"  alt="First slide"  width="120px">
+
                                         </div>
                                         <div class="item">
-                                            <img src="png/4.jpeg" style="display: inline-block;"  alt="First slide" >
-                                            <img src="png/5.jpeg" style="display: inline-block;"  alt="First slide" >
-                                            <img src="png/6.jpeg" style="display: inline-block;"  alt="First slide">
+                                            <img src="png/5.jpeg" style="display: inline-block;"  alt="First slide" width="120px">
+                                            <img src="png/6.jpeg" style="display: inline-block;"  alt="First slide" width="120px" >
+
                                         </div>
                                         <div class="item">
-                                            <img src="png/7.jpeg" style="display: inline-block;"  alt="First slide" >
-                                            <img src="png/8.jpeg" style="display: inline-block;"  alt="First slide" >
-                                            <img src="png/9.jpeg" style="display: inline-block;"  alt="First slide">
+                                            <img src="png/7.jpeg" style="display: inline-block;"  alt="First slide" width="120px">
+                                            <img src="png/8.jpeg" style="display: inline-block;"  alt="First slide" width="120px" >
+
+                                        </div>
+                                        <div class="item">
+                                            <img src="png/9.jpeg" style="display: inline-block;"  alt="First slide" >
+
+
                                         </div>
                                     </div>
                                     <!-- 轮播（Carousel）导航 -->
