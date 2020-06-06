@@ -23,10 +23,6 @@ import java.util.Map;
 @Configuration
 public class DataSourceConfig {
 
-	@Value("${fy-datasource}")
-	private String fyDataSource;
-	@Value("${jdbc.sybaseDriverClassName}")
-	private String sybaseDriverName;
 	@Value("${jdbc.mysqlDriverClassName}")
 	private String mysqlDriverClassName;
 	@Value("${mybatis.type-aliases-package}")
@@ -37,24 +33,9 @@ public class DataSourceConfig {
 	JdbcProperties jdbcAutoConfig;
 
 
-	/**
-	 * 根据数据源创建SqlSessionFactory
-	 * @param dataSource
-	 * @return
-	 * @throws Exception
-	 */
-//	@Bean(name="SqlSessionFactory")
-//	public SqlSessionFactory sqlSessionFactory(@Qualifier("dynamicDataSource") DynamicDataSource dataSource) throws Exception {
-//		SqlSessionFactoryBean fb = new SqlSessionFactoryBean();
-//		fb.setDataSource(dataSource);
-//		fb.setTypeAliasesPackage(aliasePackage);
-//		fb.setConfigLocation(new ClassPathResource("mybatis.xml"));
-//		fb.setMapperLocations(new PathMatchingResourcePatternResolver().getResources(mapperLocation));
-//		return fb.getObject();
-//	}
 
 	/**
-	 * 动态数据源
+	 * ????????
 	 * @return
 	 */
 	@Primary
@@ -62,7 +43,6 @@ public class DataSourceConfig {
 	public DataSource dynamicDataSource(){
 		Map<Object, Object> targetDataSources = new HashMap<>();
 		Iterator iterator = jdbcAutoConfig.getUrl().entrySet().iterator();
-		//存入全部数据源
 		while(iterator.hasNext()){
 			Map.Entry<String,String> entry = (Map.Entry<String,String>)iterator.next();
 			String fyjc = entry.getKey();
@@ -74,12 +54,9 @@ public class DataSourceConfig {
 			sameProcess(ds);
 			targetDataSources.put(StringUtils.capitalize(fyjc),ds);
 		}
-		//设定裁判文书调研分析系统库的jdbcdriver
 		EncryptDataSource cpwsdyfxxt = (EncryptDataSource)targetDataSources.get("Cpwsdyfxxt");
 		cpwsdyfxxt.setDriverClassName(mysqlDriverClassName);
-
-		//制定默认数据源
-		EncryptDataSource defaultDataSource = (EncryptDataSource) targetDataSources.get(StringUtils.capitalize(fyDataSource));
+		//EncryptDataSource defaultDataSource = (EncryptDataSource) targetDataSources.get(StringUtils.capitalize(fyDataSource));
 		targetDataSources.put("Default",cpwsdyfxxt);
 		DynamicDataSource ds = new DynamicDataSource();
 		ds.setTargetDataSources(targetDataSources);
@@ -87,16 +64,14 @@ public class DataSourceConfig {
 		ds.afterPropertiesSet();
 		return ds;
 	}
-	/**
-	 * 配置事务管理器
-	 */
+
 	@Bean
 	public DataSourceTransactionManager transactionManager(DataSource dataSource) throws Exception {
 		return new DataSourceTransactionManager(dataSource);
 	}
 
 	private void sameProcess(EncryptDataSource ds) {
-		ds.setDriverClassName(sybaseDriverName);
+		ds.setDriverClassName(mysqlDriverClassName);
 		ds.setConnectionTestQuery("select count(1)");
 		ds.setMaximumPoolSize(6);
 		ds.setMinimumIdle(3);

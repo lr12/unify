@@ -19,13 +19,13 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 
 
         return true;
-       /* String requestURI = request.getRequestURI(); //��ʽ /login.do
-        String url=requestURI.substring(requestURI.lastIndexOf("/")+1); //��ʽ login.do
+       /* String requestURI = request.getRequestURI(); //??? /login.do
+        String url=requestURI.substring(requestURI.lastIndexOf("/")+1); //??? login.do
         if(isTrusted(url)){
             return true;
         }
         else{
-            //ͨ����֤�Ƿ񱣴����û���Ϣ��У���Ƿ��Ѿ���¼
+            //????????????????????��???????????
             YhModel yhModel=(YhModel) request.getSession().getAttribute("yhModel");
             if(yhModel==null){
                 try {
@@ -45,7 +45,7 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
     }
 
     /**
-     * �ж��Ƿ������½������
+     * ?��????????????????
      * @param URL
      * @return
      */

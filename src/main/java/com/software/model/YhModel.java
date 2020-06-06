@@ -53,4 +53,5 @@ public class YhModel {
           BeanUtils.copyProperties(yh,yhModel);
           return yhModel;
     }
+
 }

@@ -11,17 +11,10 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class ScheduledService {
-    @Scheduled(cron = "0/5 * * * * *")
-    public void scheduledImportWs(){
-        log.info("=====>>>>>ʹ��cron  {}",System.currentTimeMillis());
-    }
- /*   @Scheduled(cron = "0 0 1 ? * L")
-    public void scheduledImportToicWs() {
-        for(DataSourceEnum dataSourceEnum:DataSourceEnum.values()){
-            for(String topic:Topics){
-                wsdyModelService.drTopicWsSchedule(dataSourceEnum.getFydm(),topic,begin,end);
-            }
-        }
-    }*/
+//    @Scheduled(cron = "0/5 * * * * *")
+//    public void scheduledImportWs(){
+//        log.info("=====>>>>>ʹ��cron  {}",System.currentTimeMillis());
+//    }
+
 }
 
