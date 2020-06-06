@@ -1,6 +1,8 @@
 package com.software.aop;
 
 
+import com.software.datasource.DataSourceRouter;
+import com.software.model.YhModel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,6 +11,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Component
 public class AccessInterceptor extends HandlerInterceptorAdapter {
@@ -17,15 +20,13 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
 
-
-        return true;
-       /* String requestURI = request.getRequestURI(); //??? /login.do
+        String requestURI = request.getRequestURI(); //??? /login.do
         String url=requestURI.substring(requestURI.lastIndexOf("/")+1); //??? login.do
         if(isTrusted(url)){
             return true;
         }
         else{
-            //????????????????????§µ???????????
+
             YhModel yhModel=(YhModel) request.getSession().getAttribute("yhModel");
             if(yhModel==null){
                 try {
@@ -37,11 +38,9 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
                 return false;
             }
             else{
-                ContextHolder.setYhbContext(yhModel);
-                DataSourceRouter.routerToCpwsdyxt();
                 return true;
             }
-        }*/
+        }
     }
 
     /**

@@ -39,6 +39,9 @@ public class LoginController {
         if(canLogin){
             YhModel yhModel=yhService.getYhModelByUserId(userid);
             request.getSession().setAttribute("yhModel",yhModel);
+            if(yhModel.getUserid().equals("zoe")) {
+                return "redirect:circle.do";
+            }
             return "redirect:home.do";
         }
         else{
