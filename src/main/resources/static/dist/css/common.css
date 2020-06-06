@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+
+.bootbox>.modal-dialog {
+	width: 300px
+}
+
+.bootbox .modal-content {
+	font-size: 20px;
+}
+
+.bootbox .modal-footer {
+	height: 58px;
+}
