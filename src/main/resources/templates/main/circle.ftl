@@ -142,7 +142,7 @@
 </script>
  <script>
      $('.carousel').carousel({
-         interval: 1000
+         interval: 4000
      });
 </script>
 </body>
