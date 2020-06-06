@@ -55,7 +55,7 @@ public class LoginController {
         result.add("hello");
         //YhModel yhModel=yhService.getYhModelByUserId("lirui");
         //System.out.println(yhModel.getPassword());
-        //logger.info("测试用户信息:%s",yhModel.toString());
+        //logger.info("娴嬭瘯鐢ㄦ埛淇℃伅:%s",yhModel.toString());
         return result;
     }
 
@@ -64,10 +64,10 @@ public class LoginController {
     public List<String> test(HttpServletRequest request, HttpServletResponse response, ModelMap model){
 
         List<String> result = new ArrayList<>();
-        result.add("周仪大美女老婆你好，这是你老公的服务器");
+        result.add("鍛ㄤ华澶х編濂宠�佸﹩浣犲ソ锛岃繖鏄綘鑰佸叕鐨勬湇鍔″櫒");
         //YhModel yhModel=yhService.getYhModelByUserId("lirui");
         //System.out.println(yhModel.getPassword());
-        //logger.info("测试用户信息:%s",yhModel.toString());
+        //logger.info("娴嬭瘯鐢ㄦ埛淇℃伅:%s",yhModel.toString());
         return result;
     }
 
