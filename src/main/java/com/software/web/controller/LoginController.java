@@ -53,9 +53,9 @@ public class LoginController {
     public List<String> hello(HttpServletRequest request,HttpServletResponse response){
         List<String> result = new ArrayList<>();
         result.add("hello");
-        YhModel yhModel=yhService.getYhModelByUserId("lirui");
-        System.out.println(yhModel.getPassword());
-        logger.info("测试用户信息:%s",yhModel.toString());
+        //YhModel yhModel=yhService.getYhModelByUserId("lirui");
+        //System.out.println(yhModel.getPassword());
+        //logger.info("测试用户信息:%s",yhModel.toString());
         return result;
     }
 
