@@ -1,7 +1,7 @@
 package com.software.service.impl;
 
-import com.software.entity.cpwsdyfx.Yh;
-import com.software.mapper.cpwsdyfxxt.YhMapper;
+import com.software.entity.Yh;
+import com.software.mapper.YhMapper;
 import com.software.model.YhModel;
 import com.software.service.YhService;
 import org.springframework.beans.factory.annotation.Autowired;
