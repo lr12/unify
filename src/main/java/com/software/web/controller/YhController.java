@@ -32,6 +32,10 @@ public class YhController {
         if(!StringUtil.isEmpty(userid)&&!StringUtil.isEmpty(password)){
             canLogin=yhService.loginByUserIdAndPassword(userid,password);
         }
+        if(canLogin){
+            YhModel yhModel=yhService.getYhModelByUserId(userid);
+            request.getSession().setAttribute("yhModel",yhModel);
+        }
         ResponseModel<Boolean> responseModel =new ResponseModel<>();
         responseModel.setData(canLogin);
         responseModel.setStatus("success");
@@ -47,7 +51,7 @@ public class YhController {
         YhModel yhModel= yhService.getYhModelByUserId(userid);
         ResponseModel<YhModel> responseModel =new ResponseModel<>();
         responseModel.setData(yhModel);
-        responseModel.setStatus("status");
+        responseModel.setStatus("success");
         return responseModel;
     }
 
