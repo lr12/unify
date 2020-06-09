@@ -17,9 +17,6 @@ import javax.servlet.MultipartConfigElement;
 		SessionAutoConfiguration.class
 })
 //@EnableConfigurationProperties
-/**
- * MapperScan扫描全部Mapper，可省略@Mapper
- */
 @EnableScheduling
 @MapperScan("com.software.mapper")
 @Configuration
@@ -33,9 +30,7 @@ public class Application   {
 	@Bean
 	public MultipartConfigElement multipartConfigElement() {
 		MultipartConfigFactory factory = new MultipartConfigFactory();
-		//单个文件最大
 		factory.setMaxFileSize("50MB"); //KB,MB
-		/// 设置总上传数据总大小
 		factory.setMaxRequestSize("200MB");
 		return factory.createMultipartConfig();
 	}
