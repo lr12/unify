@@ -8,12 +8,11 @@ public class BaseException extends RuntimeException {
     private static final long serialVersionUID = 896610542617189773L;
 
     /**
-     * BaseException中包含的异常消息
      */
     private String exceptionMessage;
 
     /**
-     * 无参构造方法
+     * ??喂?????
      *
      */
     public BaseException() {
@@ -21,11 +20,9 @@ public class BaseException extends RuntimeException {
     }
 
     /**
-     * 有参构造方法
      * <p>
      *
      * @param msg
-     *            异常消息
      *
      */
     public BaseException(String msg) {
@@ -33,12 +30,10 @@ public class BaseException extends RuntimeException {
     }
 
     /**
-     * 有参构造方法
      *
      * @param msg
-     *            异常消息
      * @param e
-     *            异常产生的根源,Throwable object.
+     * Throwable object.
      *
      */
     public BaseException(String msg, Throwable e) {
@@ -47,10 +42,9 @@ public class BaseException extends RuntimeException {
     }
 
     /**
-     * 设置异常产生的根源
      *
      * @param e
-     *            异常产生的根源,Throwable object.
+     * Throwable object.
      *
      */
     public void setCause(Throwable e) {
@@ -67,7 +61,7 @@ public class BaseException extends RuntimeException {
     }
 
     /**
-     * 获得异常消息. 等价于Exception.getMessage().
+     * Exception.getMessage().
      *
      * @see java.lang.Throwable#getMessage()
      */

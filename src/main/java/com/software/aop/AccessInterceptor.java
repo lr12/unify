@@ -16,7 +16,7 @@ import java.io.IOException;
 @Component
 public class AccessInterceptor extends HandlerInterceptorAdapter {
     static Logger logger = LogManager.getLogger(AccessInterceptor.class.getName());
-    private final String[] trustedURLs = new String[]{"index.do","login.do","loginPage.do","yh.do"};
+    private final String[] trustedURLs = new String[]{"index.do","login.do","loginPage.do","yh.do","letter.do"};
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
 
@@ -44,7 +44,6 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
     }
 
     /**
-     * ?��????????????????
      * @param URL
      * @return
      */

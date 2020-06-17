@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,7 +24,10 @@ public class YhController {
     @Autowired
     YhService yhService;
     static Logger logger = LogManager.getLogger(YhController.class.getName());
+
+
     @RequestMapping(value="login_juedge.do",method = RequestMethod.POST)
+    @ResponseBody
     public ResponseModel login(HttpServletRequest request, HttpServletResponse response, ModelMap model){
 
         String userid=request.getParameter("userid");
@@ -41,12 +45,13 @@ public class YhController {
         responseModel.setStatus("success");
         return  responseModel;
     }
+
     @RequestMapping(value="yh.do", method = RequestMethod.GET)
     @ResponseBody
     public ResponseModel getYh(HttpServletRequest request,HttpServletResponse response){
         String userid = request.getParameter("userid");
         if (StringUtil.isBlank(userid)){
-            return ResponseModel.createFailResponse();
+            return ResponseModel.createFailResponse("用户名为空");
         }
         YhModel yhModel= yhService.getYhModelByUserId(userid);
         ResponseModel<YhModel> responseModel =new ResponseModel<>();
@@ -55,5 +60,31 @@ public class YhController {
         return responseModel;
     }
 
+
+    @RequestMapping(value="yh.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseModel insert_yh(HttpServletRequest request, HttpServletResponse response, @RequestBody YhModel yhModel){
+        if(yhModel==null||StringUtil.isBlank(yhModel.getUserid())){
+                return ResponseModel.createFailResponse("用户为空");
+        }
+        YhModel data=yhService.getYhModelByUserId(yhModel.getUserid());
+        boolean success=false;
+        String msg="";
+        if(data!=null){
+            success=yhService.updateYhModel(yhModel);
+        }else{
+            success=yhService.saveYhModel(yhModel);
+        }
+        if(success){
+            msg="插入或更新成功";
+        }else {
+            msg="插入或更新失败";
+        }
+        ResponseModel<Boolean> responseModel =new ResponseModel<>();
+        responseModel.setData(success);
+        responseModel.setStatus("success");
+        responseModel.setMsg(msg);
+        return  responseModel;
+    }
 
 }

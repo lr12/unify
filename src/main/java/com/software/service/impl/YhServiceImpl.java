@@ -29,4 +29,35 @@ public class YhServiceImpl implements YhService{
         YhModel yhModel=YhModel.convert(yh);
         return yhModel;
     }
+
+    @Override
+    public boolean updateYhModel(YhModel yhModel) {
+        if(yhModel==null){
+            return false;
+        }
+        Yh yh=yhModel.convertToYh(yhModel);
+        if(yh!=null){
+            int update=yhMapper.updateByPrimaryKeySelective(yh);
+            if(update>0){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean saveYhModel(YhModel yhModel) {
+        if(yhModel==null){
+            return false;
+        }
+        Yh yh=yhModel.convertToYh(yhModel);
+        if(yh!=null){
+            int insert=yhMapper.insertSelective(yh);
+            if(insert>0){
+                return true;
+            }
+
+        }
+        return false;
+    }
 }

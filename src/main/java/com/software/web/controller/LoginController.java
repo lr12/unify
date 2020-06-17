@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.logging.log4j.Logger;
 
 @Controller
@@ -83,5 +86,17 @@ public class LoginController {
     public String circle(HttpServletRequest request, HttpServletResponse response, ModelMap model){
 
         return "main/circle";
+    }
+
+    @RequestMapping(value="letter.do",method = RequestMethod.GET)
+    public String letter(HttpServletRequest request, HttpServletResponse response, ModelMap model){
+        Map<String,String> map=new HashMap<>();
+        for (Map.Entry<String,String> entry : map.entrySet()){
+                  String key = entry.getKey();
+                  String value = entry.getValue();
+                  logger.info("%s:%s",key,value);
+        }
+        return "main/letter";
+
     }
 }

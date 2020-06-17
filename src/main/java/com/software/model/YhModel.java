@@ -118,4 +118,12 @@ public class YhModel implements Serializable {
           return yhModel;
     }
 
+    public static Yh convertToYh(YhModel yhModel){
+        if(yhModel==null){
+            return null;
+        }
+        Yh yh=new Yh();
+        BeanUtils.copyProperties(yhModel,yh);
+        return yh;
+    }
 }

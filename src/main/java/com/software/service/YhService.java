@@ -10,4 +10,8 @@ public interface YhService {
     public boolean loginByUserIdAndPassword(String userid,String password);
 
     public YhModel getYhModelByUserId(String userid);
+
+    public boolean updateYhModel(YhModel yhModel);
+
+    public boolean saveYhModel(YhModel yhModel);
 }
