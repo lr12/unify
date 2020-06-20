@@ -28,10 +28,13 @@ public class YhController {
 
     @RequestMapping(value="login_juedge.do",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseModel login(HttpServletRequest request, HttpServletResponse response, ModelMap model){
-
-        String userid=request.getParameter("userid");
-        String password=request.getParameter("password");
+    public ResponseModel login(HttpServletRequest request, HttpServletResponse response, ModelMap model,@RequestBody YhModel yhModel){
+        String userid=null;
+        String password=null;
+        if (yhModel!=null){
+             userid=yhModel.getUserid();
+             password=yhModel.getPassword();
+        }
         logger.info("登陆的用户信息"+userid+"    密码"+ password);
         boolean canLogin= false;
         if(!StringUtil.isEmpty(userid)&&!StringUtil.isEmpty(password)){
@@ -39,7 +42,7 @@ public class YhController {
         }
         ResponseModel<Boolean> responseModel =new ResponseModel<>();
         if(canLogin){
-            YhModel yhModel=yhService.getYhModelByUserId(userid);
+            yhModel=yhService.getYhModelByUserId(userid);
             request.getSession().setAttribute("yhModel",yhModel);
             response.addHeader("jsessionid",request.getSession().getId());
             responseModel.setMsg("用户登陆成功");
