@@ -42,7 +42,6 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
                 return false;
             }
             else{
-                response.addHeader("jsessionid",request.getSession().getId());
                 return true;
             }
         }
