@@ -31,12 +31,7 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 
             YhModel yhModel=(YhModel) request.getSession().getAttribute("yhModel");
             if(yhModel==null){
-                try {
-                    response.sendRedirect("login.do");
-                } catch (IOException e) {
-                    logger.warn(e.getMessage(),e);
-                    e.printStackTrace();
-                }
+                response.setStatus(-100);
                 return false;
             }
             else{
