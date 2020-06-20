@@ -8,6 +8,7 @@ import java.io.Serializable;
 @Data
 public class ResponseModel<T> implements Serializable {
     private String status;
+    private int code;
     private T data;
     private String msg;
 

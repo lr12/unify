@@ -36,13 +36,18 @@ public class YhController {
         if(!StringUtil.isEmpty(userid)&&!StringUtil.isEmpty(password)){
             canLogin=yhService.loginByUserIdAndPassword(userid,password);
         }
+        ResponseModel<Boolean> responseModel =new ResponseModel<>();
         if(canLogin){
             YhModel yhModel=yhService.getYhModelByUserId(userid);
             request.getSession().setAttribute("yhModel",yhModel);
+            responseModel.setMsg("用户登陆成功");
+        }else {
+            responseModel.setMsg("用户账号密码匹配不成功");
         }
-        ResponseModel<Boolean> responseModel =new ResponseModel<>();
+
         responseModel.setData(canLogin);
         responseModel.setStatus("success");
+
         return  responseModel;
     }
 
@@ -71,12 +76,12 @@ public class YhController {
         boolean success=false;
         String msg="";
         if(data!=null){
-            success=yhService.updateYhModel(yhModel);
+            msg="该账号已经存在";
         }else{
             success=yhService.saveYhModel(yhModel);
         }
         if(success){
-            msg="插入或更新成功";
+            msg="用户注册成功";
         }else {
             msg="插入或更新失败";
         }
