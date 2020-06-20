@@ -32,6 +32,7 @@ public class YhController {
 
         String userid=request.getParameter("userid");
         String password=request.getParameter("password");
+        logger.info("登陆的用户信息"+userid+"    密码"+ password);
         boolean canLogin= false;
         if(!StringUtil.isEmpty(userid)&&!StringUtil.isEmpty(password)){
             canLogin=yhService.loginByUserIdAndPassword(userid,password);
