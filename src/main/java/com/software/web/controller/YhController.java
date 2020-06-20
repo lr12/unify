@@ -57,7 +57,7 @@ public class YhController {
     public ResponseModel getYh(HttpServletRequest request,HttpServletResponse response){
         String userid = request.getParameter("userid");
         if (StringUtil.isBlank(userid)){
-            return ResponseModel.createFailResponse("用户名为空");
+            return ResponseModel.createFailResponse("用户名为空",100011);
         }
         YhModel yhModel= yhService.getYhModelByUserId(userid);
         ResponseModel<YhModel> responseModel =new ResponseModel<>();
@@ -71,7 +71,7 @@ public class YhController {
     @ResponseBody
     public ResponseModel insert_yh(HttpServletRequest request, HttpServletResponse response, @RequestBody YhModel yhModel){
         if(yhModel==null||StringUtil.isBlank(yhModel.getUserid())){
-                return ResponseModel.createFailResponse("用户为空");
+                return ResponseModel.createFailResponse("用户为空",100011);
         }
         YhModel data=yhService.getYhModelByUserId(yhModel.getUserid());
         boolean success=false;
