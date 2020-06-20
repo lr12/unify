@@ -17,14 +17,14 @@ import java.io.IOException;
 @Component
 public class AccessInterceptor extends HandlerInterceptorAdapter {
     static Logger logger = LogManager.getLogger(AccessInterceptor.class.getName());
-    private final String[] trustedURLs = new String[]{"index.do","login.do","loginPage.do","yh.do","letter.do","login_juedge.do"};
+    private final String[] trustedURLs = new String[]{"index.do","login.do","loginPage.do","letter.do","login_juedge.do"};
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
 
         String requestURI = request.getRequestURI(); //??? /login.do
         String url=requestURI.substring(requestURI.lastIndexOf("/")+1); //??? login.do
 
-        if(isTrusted(url)&& StringUtil.equals(request.getMethod(),"POST")){
+        if(isTrusted(url)){
             return true;
         }
         else{
