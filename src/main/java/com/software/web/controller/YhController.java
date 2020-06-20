@@ -82,8 +82,6 @@ public class YhController {
         }
         if(success){
             msg="用户注册成功";
-        }else {
-            msg="插入或更新失败";
         }
         ResponseModel<Boolean> responseModel =new ResponseModel<>();
         responseModel.setData(success);
