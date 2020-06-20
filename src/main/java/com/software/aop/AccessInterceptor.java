@@ -36,7 +36,8 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 
             YhModel yhModel=(YhModel) request.getSession().getAttribute("yhModel");
             if(yhModel==null){
-                response.setStatus(-100);
+                //response.setStatus(-100);
+                logger.info("用户信息:%s",url);
                 responseBuilder.writeJsonResponse(response, ResponseModel.createFailResponse("session失效",-100));
                 return false;
             }
