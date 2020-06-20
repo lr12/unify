@@ -40,6 +40,7 @@ public class YhController {
         if(canLogin){
             YhModel yhModel=yhService.getYhModelByUserId(userid);
             request.getSession().setAttribute("yhModel",yhModel);
+            response.addHeader("jsessionid",request.getSession().getId());
             responseModel.setMsg("用户登陆成功");
         }else {
             responseModel.setMsg("用户账号密码匹配不成功");

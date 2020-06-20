@@ -3,6 +3,7 @@ package com.software.aop;
 
 import com.software.datasource.DataSourceRouter;
 import com.software.model.YhModel;
+import com.software.util.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,7 +23,8 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 
         String requestURI = request.getRequestURI(); //??? /login.do
         String url=requestURI.substring(requestURI.lastIndexOf("/")+1); //??? login.do
-        if(isTrusted(url)){
+
+        if(isTrusted(url)&& StringUtil.equals(request.getMethod(),"POST")){
             return true;
         }
         else{
@@ -38,6 +40,7 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
                 return false;
             }
             else{
+                response.addHeader("jsessionid",request.getSession().getId());
                 return true;
             }
         }
