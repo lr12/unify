@@ -47,6 +47,10 @@
         </javaClientGenerator>
 
       <table tableName="yh"  />
+        <table tableName="article"  />
+        <table tableName="like_data"  />
+        <table tableName="share"  />
+        <table tableName="comment"  />
         <!--
          &lt;!&ndash; <property name="useActualColumnNames" value="false" />&ndash;&gt;
       <table tableName="bgdyjl"  />
