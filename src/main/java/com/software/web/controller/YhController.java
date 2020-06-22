@@ -40,17 +40,18 @@ public class YhController {
         if(!StringUtil.isEmpty(userid)&&!StringUtil.isEmpty(password)){
             canLogin=yhService.loginByUserIdAndPassword(userid,password);
         }
-        ResponseModel<Boolean> responseModel =new ResponseModel<>();
+        ResponseModel<YhModel> responseModel =new ResponseModel<>();
+        YhModel user = null;
         if(canLogin){
-            yhModel=yhService.getYhModelByUserId(userid);
-            request.getSession().setAttribute("yhModel",yhModel);
+            user=yhService.getYhModelByUserId(userid);
+            request.getSession().setAttribute("yhModel",user);
             response.addHeader("jsessionid",request.getSession().getId());
             responseModel.setMsg("用户登陆成功");
         }else {
             responseModel.setMsg("用户账号密码匹配不成功");
         }
 
-        responseModel.setData(canLogin);
+        responseModel.setData(user);
         responseModel.setStatus("success");
 
         return  responseModel;
