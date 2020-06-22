@@ -44,6 +44,7 @@ public class ShareServiceImpl implements ShareService {
                 return shareModels;
             }
             for(Share share:shares){
+                logger.info(ShareModel.convertToShareModel(share));
                 shareModels.add(ShareModel.convertToShareModel(share));
             }
         }catch (Exception e){
