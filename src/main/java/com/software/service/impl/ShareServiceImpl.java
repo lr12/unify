@@ -37,8 +37,9 @@ public class ShareServiceImpl implements ShareService {
         List<ShareModel> shareModels = new ArrayList<>();
         try {
             ShareExample shareExample =new ShareExample();
-            shareExample.setOrderByClause("id desc");
+            //shareExample.setOrderByClause("id desc");
             List<Share> shares=shareMapper.selectByExample(shareExample);
+            logger.info("show_shareModel{}",shares);
             if(shares==null||shareModels.size()==0){
                 return shareModels;
             }
