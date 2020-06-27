@@ -40,7 +40,7 @@ public class ShareServiceImpl implements ShareService {
             //shareExample.setOrderByClause("id desc");
             List<Share> shares=shareMapper.selectByExample(shareExample);
             logger.info("show_shareModel{}",shares);
-            if(shares==null||shareModels.size()==0){
+            if(shares==null||shares.size()==0){
                 return shareModels;
             }
             for(Share share:shares){
