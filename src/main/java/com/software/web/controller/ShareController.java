@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -33,10 +34,22 @@ public class ShareController {
     public ResponseModel getShare(HttpServletRequest request,HttpServletResponse response){
         ResponseModel<List> responseModel=new ResponseModel<>();
         List<ShareModel> shareModels=shareService.show_shareModel();
-        responseModel.setCode(200);
+        responseModel.setCode(0);
         responseModel.setMsg("操作成功");
         responseModel.setStatus("success");
         responseModel.setData(shareModels);
+        return responseModel;
+    }
+
+    @RequestMapping(value="getShareByYhId.do", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseModel getShareByUserId(HttpServletRequest request,HttpServletResponse response){
+        String yh_id= request.getParameter("yh_id");
+        if(StringUtil.isEmpty(yh_id)){
+            return ResponseModel.createFailResponse("用户id为空",-1);
+        }
+        List<ShareModel> shareModels=shareService.show_shareModelByYhd(yh_id);
+        ResponseModel<List> responseModel=ResponseModel.createSuccessResponse(shareModels);
         return responseModel;
     }
 
@@ -51,6 +64,8 @@ public class ShareController {
         YhModel yhModel=(YhModel) request.getSession().getAttribute("yhModel");
         shareModel.setYhId(yhModel.getUserid());
         shareModel.setYhName(yhModel.getName());
+        shareModel.setCreateTime(new Date());
+        shareModel.setModifyTime(new Date());
         boolean success=shareService.insert_share(shareModel);
 
         ResponseModel<Boolean> responseModel =new ResponseModel<>();

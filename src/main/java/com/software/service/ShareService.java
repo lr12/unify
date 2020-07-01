@@ -11,4 +11,6 @@ public interface ShareService {
 
 
     public List<ShareModel> show_shareModel();
+
+    public List<ShareModel> show_shareModelByYhd(String yh_id);
 }

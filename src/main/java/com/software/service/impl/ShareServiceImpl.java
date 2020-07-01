@@ -52,4 +52,27 @@ public class ShareServiceImpl implements ShareService {
         }
         return shareModels;
     }
+
+    @Override
+    public List<ShareModel> show_shareModelByYhd(String yh_id) {
+        List<ShareModel> shareModels = new ArrayList<>();
+        try {
+            ShareExample shareExample =new ShareExample();
+            ShareExample.Criteria criteria =shareExample.createCriteria();
+            criteria.andYhIdEqualTo(yh_id);
+            //shareExample.setOrderByClause("id desc");
+            List<Share> shares=shareMapper.selectByExample(shareExample);
+            logger.info("show_shareModel{}",shares);
+            if(shares==null||shares.size()==0){
+                return shareModels;
+            }
+            for(Share share:shares){
+                logger.info(ShareModel.convertToShareModel(share));
+                shareModels.add(ShareModel.convertToShareModel(share));
+            }
+        }catch (Exception e){
+            logger.error("show_shareModel err:{}",e);
+        }
+        return shareModels;
+    }
 }

@@ -1,6 +1,7 @@
 package com.software.model;
 
 import com.software.entity.Share;
+import com.software.util.DateUtil;
 import lombok.Data;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -70,6 +71,10 @@ public class ShareModel implements Serializable {
      */
     private String yhName;
 
+    private String create_time_str;
+
+    private String modify_time_str;
+
     public static Share convertToShare(ShareModel shareModel){
         if(shareModel==null){
             return null;
@@ -85,7 +90,12 @@ public class ShareModel implements Serializable {
         }
         ShareModel shareModel=new ShareModel();
         BeanUtils.copyProperties(share,shareModel);
-        logger.info("测试数据的share:{},shareModel:{}",share,shareModel);
+        if(share.getCreateTime()!=null) {
+            shareModel.setCreate_time_str(DateUtil.format(share.getCreateTime(), DateUtil.hmsFormat));
+        }
+        if(share.getModifyTime()!=null){
+            shareModel.setModify_time_str(DateUtil.format(share.getModifyTime(),DateUtil.hmsFormat));
+        }
         return shareModel;
     }
 }

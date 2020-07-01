@@ -20,4 +20,13 @@ public class ResponseModel<T> implements Serializable {
         responseModel.setMsg(message);
         return  responseModel;
     }
+
+    public static ResponseModel createSuccessResponse(Object data){
+        ResponseModel responseModel = new ResponseModel();
+        responseModel.setStatus("success");
+        responseModel.setData(data);
+        responseModel.setCode(0);
+        responseModel.setMsg("操作成功");
+        return  responseModel;
+    }
 }
