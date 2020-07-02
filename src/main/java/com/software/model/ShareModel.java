@@ -1,5 +1,7 @@
 package com.software.model;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.software.entity.Share;
 import com.software.util.DateUtil;
 import lombok.Data;
@@ -75,6 +77,9 @@ public class ShareModel implements Serializable {
 
     private String modify_time_str;
 
+    private Object imageUrls;
+
+
     public static Share convertToShare(ShareModel shareModel){
         if(shareModel==null){
             return null;
@@ -95,6 +100,17 @@ public class ShareModel implements Serializable {
         }
         if(share.getModifyTime()!=null){
             shareModel.setModify_time_str(DateUtil.format(share.getModifyTime(),DateUtil.hmsFormat));
+        }
+        if(share.getImageUrl()!=null){
+            try {
+                JSONObject jsonObject=JSONObject.parseObject(share.getImageUrl());
+                if(jsonObject.get("images")!=null){
+                    shareModel.setImageUrls(jsonObject.get("images"));
+                }
+            }catch (Exception e){
+                logger.error("json parseObject share:{},err：{}",share,e);
+            }
+
         }
         return shareModel;
     }
