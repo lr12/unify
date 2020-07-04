@@ -59,6 +59,7 @@ public class CommentController {
                     List<CommentModel> relateModels=map.get(cid).getCommentModelList();
                     if(relateModels==null){
                         relateModels=new ArrayList<>();
+                        map.get(cid).setCommentModelList(relateModels);
                     }
                     relateModels.add(commentModel);
                     queue.offer(commentModel.getCommentId());
