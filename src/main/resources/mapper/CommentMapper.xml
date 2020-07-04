@@ -8,7 +8,7 @@
     -->
     <id column="comment_id" jdbcType="INTEGER" property="commentId" />
     <result column="article_id" jdbcType="INTEGER" property="articleId" />
-    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="userid" jdbcType="VARCHAR" property="userid" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -177,7 +177,7 @@
     insert into comment (comment_id, article_id, userid, 
       `comment`, `name`, create_time, 
       modify_time, image)
-    values (#{commentId,jdbcType=INTEGER}, #{articleId,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+    values (#{commentId,jdbcType=INTEGER}, #{articleId,jdbcType=INTEGER}, #{userid,jdbcType=VARCHAR}, 
       #{comment,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{modifyTime,jdbcType=TIMESTAMP}, #{image,jdbcType=LONGVARBINARY})
   </insert>
@@ -221,7 +221,7 @@
         #{articleId,jdbcType=INTEGER},
       </if>
       <if test="userid != null">
-        #{userid,jdbcType=INTEGER},
+        #{userid,jdbcType=VARCHAR},
       </if>
       <if test="comment != null">
         #{comment,jdbcType=VARCHAR},
@@ -264,7 +264,7 @@
         article_id = #{record.articleId,jdbcType=INTEGER},
       </if>
       <if test="record.userid != null">
-        userid = #{record.userid,jdbcType=INTEGER},
+        userid = #{record.userid,jdbcType=VARCHAR},
       </if>
       <if test="record.comment != null">
         `comment` = #{record.comment,jdbcType=VARCHAR},
@@ -294,7 +294,7 @@
     update comment
     set comment_id = #{record.commentId,jdbcType=INTEGER},
       article_id = #{record.articleId,jdbcType=INTEGER},
-      userid = #{record.userid,jdbcType=INTEGER},
+      userid = #{record.userid,jdbcType=VARCHAR},
       `comment` = #{record.comment,jdbcType=VARCHAR},
       `name` = #{record.name,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -312,7 +312,7 @@
     update comment
     set comment_id = #{record.commentId,jdbcType=INTEGER},
       article_id = #{record.articleId,jdbcType=INTEGER},
-      userid = #{record.userid,jdbcType=INTEGER},
+      userid = #{record.userid,jdbcType=VARCHAR},
       `comment` = #{record.comment,jdbcType=VARCHAR},
       `name` = #{record.name,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -332,7 +332,7 @@
         article_id = #{articleId,jdbcType=INTEGER},
       </if>
       <if test="userid != null">
-        userid = #{userid,jdbcType=INTEGER},
+        userid = #{userid,jdbcType=VARCHAR},
       </if>
       <if test="comment != null">
         `comment` = #{comment,jdbcType=VARCHAR},
@@ -359,7 +359,7 @@
     -->
     update comment
     set article_id = #{articleId,jdbcType=INTEGER},
-      userid = #{userid,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=VARCHAR},
       `comment` = #{comment,jdbcType=VARCHAR},
       `name` = #{name,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -374,7 +374,7 @@
     -->
     update comment
     set article_id = #{articleId,jdbcType=INTEGER},
-      userid = #{userid,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=VARCHAR},
       `comment` = #{comment,jdbcType=VARCHAR},
       `name` = #{name,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
