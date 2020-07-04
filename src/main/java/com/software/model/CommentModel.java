@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class CommentModel implements Serializable {
@@ -75,10 +76,14 @@ public class CommentModel implements Serializable {
      */
     private byte[] image;
 
+    private Integer relateId;
 
     private String create_time_str;
 
     private String modify_time_str;
+
+
+    List<CommentModel> commentModelList;
 
     public static Comment convertToComment(CommentModel commentModel){
         if(commentModel==null){

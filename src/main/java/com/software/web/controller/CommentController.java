@@ -18,8 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class CommentController {
@@ -43,7 +42,30 @@ public class CommentController {
             logger.error("传入的参数转整数异常,aid:{},err:{}",aid,e);
         }
         List<CommentModel> commentModels=commentService.show_shareModelByAid(aid);
-        ResponseModel<List> responseModel=ResponseModel.createSuccessResponse(commentModels);
+        List<CommentModel>  firstLevelCommentModels=new ArrayList<>();
+        Queue<Integer> queue=new LinkedList<Integer>();
+        Map<Integer,CommentModel> map=new HashMap<>();
+        for(CommentModel commentModel:commentModels){
+            if(commentModel.getRelateId()==-1){
+                firstLevelCommentModels.add(commentModel);
+                queue.offer(commentModel.getCommentId());
+            }
+            map.put(commentModel.getCommentId(),commentModel);
+        }
+        while(!queue.isEmpty()){
+            int cid=queue.poll();
+            for(CommentModel commentModel:commentModels){
+                if(commentModel.getRelateId()==cid){
+                    List<CommentModel> relateModels=map.get(cid).getCommentModelList();
+                    if(relateModels==null){
+                        relateModels=new ArrayList<>();
+                    }
+                    relateModels.add(commentModel);
+                    queue.offer(commentModel.getCommentId());
+                }
+            }
+        }
+        ResponseModel<List> responseModel=ResponseModel.createSuccessResponse(firstLevelCommentModels);
         return responseModel;
     }
 

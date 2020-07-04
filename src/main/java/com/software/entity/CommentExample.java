@@ -644,6 +644,66 @@ public class CommentExample {
             addCriterion("modify_time not between", value1, value2, "modifyTime");
             return (Criteria) this;
         }
+
+        public Criteria andRelateIdIsNull() {
+            addCriterion("relate_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelateIdIsNotNull() {
+            addCriterion("relate_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelateIdEqualTo(Integer value) {
+            addCriterion("relate_id =", value, "relateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelateIdNotEqualTo(Integer value) {
+            addCriterion("relate_id <>", value, "relateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelateIdGreaterThan(Integer value) {
+            addCriterion("relate_id >", value, "relateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelateIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("relate_id >=", value, "relateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelateIdLessThan(Integer value) {
+            addCriterion("relate_id <", value, "relateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelateIdLessThanOrEqualTo(Integer value) {
+            addCriterion("relate_id <=", value, "relateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelateIdIn(List<Integer> values) {
+            addCriterion("relate_id in", values, "relateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelateIdNotIn(List<Integer> values) {
+            addCriterion("relate_id not in", values, "relateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelateIdBetween(Integer value1, Integer value2) {
+            addCriterion("relate_id between", value1, value2, "relateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRelateIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("relate_id not between", value1, value2, "relateId");
+            return (Criteria) this;
+        }
     }
 
     /**
