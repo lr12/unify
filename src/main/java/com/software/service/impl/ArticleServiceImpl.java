@@ -1,5 +1,7 @@
 package com.software.service.impl;
 
+import com.software.entity.Article;
+import com.software.entity.ArticleExample;
 import com.software.mapper.ArticleMapper;
 import com.software.model.ArticleModel;
 import com.software.service.ArticleService;
@@ -9,6 +11,7 @@ import org.checkerframework.checker.units.qual.A;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -32,5 +35,25 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<ArticleModel> show_ArticleModel(String userid) {
         return null;
+    }
+
+    @Override
+    public List<ArticleModel> showAllArticle() {
+        List<ArticleModel> articleModels = new ArrayList<>();
+        try {
+            ArticleExample articleExample =new ArticleExample();
+            //shareExample.setOrderByClause("id desc");
+            List<Article> articles=articleMapper.selectByExample(articleExample);
+            if(articles==null||articles.size()==0){
+                return articleModels;
+            }
+            for(Article article:articles){
+
+                articleModels.add(ArticleModel.convertToArticleModel(article));
+            }
+        }catch (Exception e){
+            logger.error("showAllArticle err:{}",e);
+        }
+        return articleModels;
     }
 }

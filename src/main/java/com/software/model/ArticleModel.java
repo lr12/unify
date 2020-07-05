@@ -144,6 +144,7 @@ public class ArticleModel implements Serializable {
                 logger.error("文章内容二进制流转文字异常:{}",e);
             }
         }
+        articleModel.setContent(null);
         return articleModel;
     }
 

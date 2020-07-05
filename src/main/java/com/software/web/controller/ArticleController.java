@@ -50,4 +50,15 @@ public class ArticleController {
         return  responseModel;
     }
 
+    @RequestMapping(value="showAllArticle.do", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseModel showAllArticle(HttpServletRequest request,HttpServletResponse response){
+        ResponseModel<List> responseModel=new ResponseModel<>();
+        List<ArticleModel> articleModels=articleService.showAllArticle();
+        responseModel.setCode(0);
+        responseModel.setMsg("操作成功");
+        responseModel.setStatus("success");
+        responseModel.setData(articleModels);
+        return responseModel;
+    }
 }

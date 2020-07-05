@@ -1,5 +1,6 @@
 package com.software.service;
 
+import com.software.entity.Article;
 import com.software.model.ArticleModel;
 import com.software.model.CommentModel;
 
@@ -12,4 +13,6 @@ public interface ArticleService {
 
 
     public List<ArticleModel> show_ArticleModel(String userid);
+
+    public List<ArticleModel> showAllArticle();
 }
