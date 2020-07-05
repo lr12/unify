@@ -45,6 +45,7 @@ public class YhController {
         if(canLogin){
             user=yhService.getYhModelByUserId(userid);
             request.getSession().setAttribute("yhModel",user);
+            request.getSession().setMaxInactiveInterval(-1);
             response.addHeader("jsessionid",request.getSession().getId());
             responseModel.setMsg("用户登陆成功");
         }else {

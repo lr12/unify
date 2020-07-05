@@ -25,11 +25,16 @@ public class LoginController {
     @Autowired
     YhService yhService;
     static Logger logger = LogManager.getLogger(LoginController.class.getName());
+
+
+
     @RequestMapping(value="login.do",method = RequestMethod.GET)
     public String loginPage(HttpServletRequest request, HttpServletResponse response, ModelMap model){
        
         return "loginPage";
     }
+
+
     @RequestMapping(value="login.do",method = RequestMethod.POST)
     public String login(HttpServletRequest request, HttpServletResponse response, ModelMap model){
 
@@ -81,7 +86,9 @@ public class LoginController {
     public String home(HttpServletRequest request, HttpServletResponse response, ModelMap model){
 
             return "main/home";
-        }
+    }
+
+
     @RequestMapping(value="circle.do",method = RequestMethod.GET)
     public String circle(HttpServletRequest request, HttpServletResponse response, ModelMap model){
 
