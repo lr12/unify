@@ -11,5 +11,6 @@ public interface CommentService {
     public boolean insert_comment(CommentModel commentModel);
 
 
-    public List<CommentModel> show_shareModelByAid(Integer aid);
+    public List<CommentModel> show_shareModelByAid(int aid,int type);
+
 }

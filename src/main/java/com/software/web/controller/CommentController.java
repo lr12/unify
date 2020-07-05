@@ -30,18 +30,22 @@ public class CommentController {
     @RequestMapping(value="getCommentByAid.do", method = RequestMethod.GET)
     @ResponseBody
     public ResponseModel getCommentByAid(HttpServletRequest request,HttpServletResponse response){
-        String param= request.getParameter("aid");
-        if(StringUtil.isEmpty(param)){
-            return ResponseModel.createFailResponse("aid为空",-1);
+        String aid= request.getParameter("aid");
+        String type=request.getParameter("type");
+
+        if(StringUtil.isEmpty(aid)||StringUtil.isEmpty(type)){
+            return ResponseModel.createFailResponse("参数为空",-1);
         }
-        Integer aid=0;
+        int aid_num=-1;
+        int type_num=-1;
         try{
-            aid=Integer.parseInt(param);
+            aid_num=Integer.parseInt(aid);
+            type_num=Integer.parseInt(type);
         }
         catch (Exception e){
             logger.error("传入的参数转整数异常,aid:{},err:{}",aid,e);
         }
-        List<CommentModel> commentModels=commentService.show_shareModelByAid(aid);
+        List<CommentModel> commentModels=commentService.show_shareModelByAid(aid_num,type_num);
         List<CommentModel>  firstLevelCommentModels=new ArrayList<>();
         Queue<Integer> queue=new LinkedList<Integer>();
         Map<Integer,CommentModel> map=new HashMap<>();

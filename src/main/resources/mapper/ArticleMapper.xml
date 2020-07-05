@@ -13,7 +13,7 @@
     <result column="label" jdbcType="VARCHAR" property="label" />
     <result column="forbid" jdbcType="INTEGER" property="forbid" />
     <result column="short_desc" jdbcType="VARCHAR" property="shortDesc" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modify_tme" jdbcType="TIMESTAMP" property="modifyTme" />
   </resultMap>
@@ -184,7 +184,7 @@
       modify_tme, content)
     values (#{articleId,jdbcType=INTEGER}, #{repos,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
       #{type,jdbcType=INTEGER}, #{label,jdbcType=VARCHAR}, #{forbid,jdbcType=INTEGER}, 
-      #{shortDesc,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{shortDesc,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{modifyTme,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARBINARY})
   </insert>
   <insert id="insertSelective" parameterType="com.software.entity.Article">
@@ -251,7 +251,7 @@
         #{shortDesc,jdbcType=VARCHAR},
       </if>
       <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -303,7 +303,7 @@
         short_desc = #{record.shortDesc,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=INTEGER},
+        user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -332,7 +332,7 @@
       `label` = #{record.label,jdbcType=VARCHAR},
       forbid = #{record.forbid,jdbcType=INTEGER},
       short_desc = #{record.shortDesc,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       modify_tme = #{record.modifyTme,jdbcType=TIMESTAMP},
       content = #{record.content,jdbcType=LONGVARBINARY}
@@ -353,7 +353,7 @@
       `label` = #{record.label,jdbcType=VARCHAR},
       forbid = #{record.forbid,jdbcType=INTEGER},
       short_desc = #{record.shortDesc,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       modify_tme = #{record.modifyTme,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -386,7 +386,7 @@
         short_desc = #{shortDesc,jdbcType=VARCHAR},
       </if>
       <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
+        user_id = #{userId,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -412,7 +412,7 @@
       `label` = #{label,jdbcType=VARCHAR},
       forbid = #{forbid,jdbcType=INTEGER},
       short_desc = #{shortDesc,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       modify_tme = #{modifyTme,jdbcType=TIMESTAMP},
       content = #{content,jdbcType=LONGVARBINARY}
@@ -430,7 +430,7 @@
       `label` = #{label,jdbcType=VARCHAR},
       forbid = #{forbid,jdbcType=INTEGER},
       short_desc = #{shortDesc,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       modify_tme = #{modifyTme,jdbcType=TIMESTAMP}
     where article_id = #{articleId,jdbcType=INTEGER}

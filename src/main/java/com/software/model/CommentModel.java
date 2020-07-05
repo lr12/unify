@@ -82,6 +82,8 @@ public class CommentModel implements Serializable {
 
     private String modify_time_str;
 
+    private Integer type;
+
 
     List<CommentModel> commentModelList;
 

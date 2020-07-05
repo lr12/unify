@@ -31,19 +31,19 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<CommentModel> show_shareModelByAid(Integer aid) {
+    public List<CommentModel> show_shareModelByAid(int aid,int type) {
         List<CommentModel> commentModels = new ArrayList<>();
         try {
             CommentExample commentExample =new CommentExample();
             CommentExample.Criteria criteria =commentExample.createCriteria();
             criteria.andArticleIdEqualTo(aid);
+            criteria.andTypeEqualTo(type);
             List<Comment> comments=commentMapper.selectByExample(commentExample);
             logger.info("show_shareModelByAid{}",comments);
             if(comments==null||comments.size()==0){
                 return commentModels;
             }
             for(Comment comment:comments){
-                //logger.info(CommentModel.convertToCommentModel(comment));
                 commentModels.add(CommentModel.convertToCommentModel(comment));
             }
         }catch (Exception e){
