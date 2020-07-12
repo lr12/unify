@@ -62,6 +62,7 @@ public class YhController {
     @ResponseBody
     public ResponseModel getYh(HttpServletRequest request,HttpServletResponse response){
         String userid = request.getParameter("userid");
+        logger.info("getYh参数为{}",userid);
         if (StringUtil.isBlank(userid)){
             return ResponseModel.createFailResponse("用户名为空",100011);
         }
@@ -76,6 +77,7 @@ public class YhController {
     @RequestMapping(value="yh.do",method = RequestMethod.POST)
     @ResponseBody
     public ResponseModel insert_yh(HttpServletRequest request, HttpServletResponse response, @RequestBody YhModel yhModel){
+        logger.info("insert_yh参数为{}",yhModel);
         if(yhModel==null||StringUtil.isBlank(yhModel.getUserid())){
                 return ResponseModel.createFailResponse("用户为空",100011);
         }

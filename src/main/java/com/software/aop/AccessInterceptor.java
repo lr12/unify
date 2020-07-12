@@ -30,6 +30,7 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
         String url=requestURI.substring(requestURI.lastIndexOf("/")+1); //??? login.do
 
         if(isTrusted(url)){
+            logger.info("信任登陆链接:{}",url);
             return true;
         }
         else{
@@ -37,7 +38,7 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
             YhModel yhModel=(YhModel) request.getSession().getAttribute("yhModel");
             if(yhModel==null){
                 //response.setStatus(-100);
-                logger.info("用户信息:%s",url);
+                logger.info("登陆链接:{}",url);
                 responseBuilder.writeJsonResponse(response, ResponseModel.createFailResponse("session失效",-100));
                 return false;
             }
