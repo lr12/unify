@@ -57,7 +57,7 @@ public class ShareController {
     @RequestMapping(value="share.do",method = RequestMethod.POST)
     @ResponseBody
     public ResponseModel insert_share(HttpServletRequest request, HttpServletResponse response, @RequestBody ShareModel shareModel){
-
+        logger.info("insert_share:{}",shareModel);
         if(shareModel==null){
                 return ResponseModel.createFailResponse("填写信息为空",100011);
         }
