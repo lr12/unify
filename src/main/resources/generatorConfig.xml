@@ -46,11 +46,16 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
 
-      <table tableName="yh"  />
-        <table tableName="article"  />
-        <table tableName="like_data"  />
-        <table tableName="share"  />
-        <table tableName="comment"  />
+<!--      <table tableName="yh"  />-->
+<!--        <table tableName="article"  />-->
+<!--        <table tableName="like_data"  />-->
+<!--        <table tableName="share"  />-->
+<!--        <table tableName="comment"  />-->
+<!--        <table tableName="attention"  />-->
+<!--        <table tableName="friend"  />-->
+<!--        <table tableName="chatmessage"  />-->
+<!--        <table tableName="label"  />-->
+        <table tableName="video"  />
         <!--
          &lt;!&ndash; <property name="useActualColumnNames" value="false" />&ndash;&gt;
       <table tableName="bgdyjl"  />
