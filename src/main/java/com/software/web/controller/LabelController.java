@@ -58,7 +58,7 @@ public class LabelController {
                 }
             }
         }
-        responseModel.setData(labelModels);
+        responseModel.setData(firstLevelLabelModel);
         return responseModel;
     }
 
