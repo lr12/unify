@@ -1,5 +1,6 @@
 package com.software.web.controller;
 
+import com.software.model.ResponseModel;
 import com.software.model.YhModel;
 import com.software.service.YhService;
 import com.software.util.StringUtil;
@@ -105,5 +106,17 @@ public class LoginController {
         }
         return "main/letter";
 
+    }
+
+    @RequestMapping(value="logout.do",method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseModel logout(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+        ResponseModel<String> responseModel=new ResponseModel<>();
+        responseModel.setCode(0);
+        responseModel.setMsg("操作成功");
+        responseModel.setStatus("success");
+        request.getSession().removeAttribute("yhModel");
+        responseModel.setData(null);
+        return responseModel;
     }
 }
