@@ -854,6 +854,146 @@ public class VideoExample {
             addCriterion("yh_id not between", value1, value2, "yhId");
             return (Criteria) this;
         }
+
+        public Criteria andLabelIsNull() {
+            addCriterion("`label` is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelIsNotNull() {
+            addCriterion("`label` is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelEqualTo(String value) {
+            addCriterion("`label` =", value, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelNotEqualTo(String value) {
+            addCriterion("`label` <>", value, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelGreaterThan(String value) {
+            addCriterion("`label` >", value, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelGreaterThanOrEqualTo(String value) {
+            addCriterion("`label` >=", value, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelLessThan(String value) {
+            addCriterion("`label` <", value, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelLessThanOrEqualTo(String value) {
+            addCriterion("`label` <=", value, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelLike(String value) {
+            addCriterion("`label` like", value, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelNotLike(String value) {
+            addCriterion("`label` not like", value, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelIn(List<String> values) {
+            addCriterion("`label` in", values, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelNotIn(List<String> values) {
+            addCriterion("`label` not in", values, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelBetween(String value1, String value2) {
+            addCriterion("`label` between", value1, value2, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andLabelNotBetween(String value1, String value2) {
+            addCriterion("`label` not between", value1, value2, "label");
+            return (Criteria) this;
+        }
+
+        public Criteria andReposIsNull() {
+            addCriterion("repos is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReposIsNotNull() {
+            addCriterion("repos is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReposEqualTo(String value) {
+            addCriterion("repos =", value, "repos");
+            return (Criteria) this;
+        }
+
+        public Criteria andReposNotEqualTo(String value) {
+            addCriterion("repos <>", value, "repos");
+            return (Criteria) this;
+        }
+
+        public Criteria andReposGreaterThan(String value) {
+            addCriterion("repos >", value, "repos");
+            return (Criteria) this;
+        }
+
+        public Criteria andReposGreaterThanOrEqualTo(String value) {
+            addCriterion("repos >=", value, "repos");
+            return (Criteria) this;
+        }
+
+        public Criteria andReposLessThan(String value) {
+            addCriterion("repos <", value, "repos");
+            return (Criteria) this;
+        }
+
+        public Criteria andReposLessThanOrEqualTo(String value) {
+            addCriterion("repos <=", value, "repos");
+            return (Criteria) this;
+        }
+
+        public Criteria andReposLike(String value) {
+            addCriterion("repos like", value, "repos");
+            return (Criteria) this;
+        }
+
+        public Criteria andReposNotLike(String value) {
+            addCriterion("repos not like", value, "repos");
+            return (Criteria) this;
+        }
+
+        public Criteria andReposIn(List<String> values) {
+            addCriterion("repos in", values, "repos");
+            return (Criteria) this;
+        }
+
+        public Criteria andReposNotIn(List<String> values) {
+            addCriterion("repos not in", values, "repos");
+            return (Criteria) this;
+        }
+
+        public Criteria andReposBetween(String value1, String value2) {
+            addCriterion("repos between", value1, value2, "repos");
+            return (Criteria) this;
+        }
+
+        public Criteria andReposNotBetween(String value1, String value2) {
+            addCriterion("repos not between", value1, value2, "repos");
+            return (Criteria) this;
+        }
     }
 
     /**
