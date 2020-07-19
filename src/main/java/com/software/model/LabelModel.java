@@ -1,9 +1,13 @@
 package com.software.model;
 
+import com.software.entity.Label;
+import com.software.util.DateUtil;
 import lombok.Data;
+import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class LabelModel implements Serializable {
@@ -62,4 +66,36 @@ public class LabelModel implements Serializable {
      * @mbggenerated
      */
     private Date updateTime;
+
+    private String create_time_str;
+
+    private String modify_time_str;
+
+    private List<LabelModel> childLabels;
+
+
+    public static Label convertToLabel(LabelModel labelModel){
+        if(labelModel==null){
+            return null;
+        }
+        Label label=new Label();
+        BeanUtils.copyProperties(labelModel,label);
+        return label;
+    }
+
+    public static LabelModel convertToLabelModel(Label label){
+        if(label==null){
+            return null;
+        }
+        LabelModel labelModel=new LabelModel();
+        BeanUtils.copyProperties(label,labelModel);
+        if(label.getCreateTime()!=null) {
+            labelModel.setCreate_time_str(DateUtil.format(label.getCreateTime(), DateUtil.hmsFormat));
+        }
+        if(label.getUpdateTime()!=null){
+            labelModel.setModify_time_str(DateUtil.format(label.getUpdateTime(),DateUtil.hmsFormat));
+        }
+
+        return labelModel;
+    }
 }
