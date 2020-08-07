@@ -1,10 +1,9 @@
 package com.software.aop;
 
 
-import com.software.datasource.DataSourceRouter;
+
 import com.software.model.ResponseModel;
 import com.software.model.YhModel;
-import com.software.util.StringUtil;
 import com.software.web.ResponseBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
