@@ -18,6 +18,7 @@
     <result column="role" jdbcType="VARCHAR" property="role" />
     <result column="label" jdbcType="VARCHAR" property="label" />
     <result column="sign" jdbcType="VARCHAR" property="sign" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="modfy_tme" jdbcType="TIMESTAMP" property="modfyTme" />
   </resultMap>
