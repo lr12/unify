@@ -50,6 +50,7 @@ public class VideoServiceImpl  implements VideoService {
             for(Video video:videos){
                 VideoModel videoModel=VideoModel.convertToVideoModel(video);
                 Yh yh=yhMapper.selectByPrimaryKey(videoModel.getYhId());
+                logger.info("=====================yhId:{},yh{}",video.getYhId(),yh);
                 if(yh!=null){
                     videoModel.setPic(yh.getPic());
                     videoModel.setYhName(yh.getName());
