@@ -74,7 +74,7 @@ public class YhController {
     }
 
 
-    @RequestMapping(value="yh.do",method = RequestMethod.POST)
+    @RequestMapping(value="register.do",method = RequestMethod.POST)
     @ResponseBody
     public ResponseModel insert_yh(HttpServletRequest request, HttpServletResponse response, @RequestBody YhModel yhModel){
         logger.info("insert_yh参数为{}",yhModel);

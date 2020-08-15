@@ -19,7 +19,7 @@ import java.io.IOException;
 @Component
 public class AccessInterceptor extends HandlerInterceptorAdapter {
     static Logger logger = LogManager.getLogger(AccessInterceptor.class.getName());
-    private final String[] trustedURLs = new String[]{"index.do","login.do","loginPage.do","letter.do","login_juedge.do","yh.do","logout.do"};
+    private final String[] trustedURLs = new String[]{"index.do","login.do","loginPage.do","letter.do","login_juedge.do","yh.do","logout.do","register.do"};
     @Resource
     private ResponseBuilder responseBuilder;
     @Override
