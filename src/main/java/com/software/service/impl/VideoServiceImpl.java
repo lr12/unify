@@ -1,13 +1,12 @@
 package com.software.service.impl;
 
-import com.software.entity.Share;
-import com.software.entity.ShareExample;
-import com.software.entity.Video;
-import com.software.entity.VideoExample;
+import com.software.entity.*;
 import com.software.mapper.ShareMapper;
 import com.software.mapper.VideoMapper;
+import com.software.mapper.YhMapper;
 import com.software.model.ShareModel;
 import com.software.model.VideoModel;
+import com.software.model.YhModel;
 import com.software.service.VideoService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,6 +22,8 @@ public class VideoServiceImpl  implements VideoService {
     Logger logger = LogManager.getLogger(VideoServiceImpl.class);
     @Autowired
     VideoMapper videoMapper;
+    @Autowired
+    YhMapper yhMapper;
     @Override
     public boolean insertVideo(VideoModel videoModel) {
         try {
@@ -47,8 +48,15 @@ public class VideoServiceImpl  implements VideoService {
                 return videoModels;
             }
             for(Video video:videos){
-                logger.info(VideoModel.convertToVideoModel(video));
-                videoModels.add(VideoModel.convertToVideoModel(video));
+                VideoModel videoModel=VideoModel.convertToVideoModel(video);
+                Yh yh=yhMapper.selectByPrimaryKey(videoModel.getYhId());
+                if(yh!=null){
+                    videoModel.setPic(yh.getPic());
+                    videoModel.setYhName(yh.getName());
+                    videoModel.setYhDesc(yh.getDesc());
+                }
+                logger.info(videoModel);
+                videoModels.add(videoModel);
             }
         }catch (Exception e){
             logger.error("getAllVideos err:{}",e);

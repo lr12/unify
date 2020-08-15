@@ -90,6 +90,12 @@ public class VideoModel implements Serializable {
 
     private String yhId;
 
+    private String pic;
+
+    private String yhName;
+
+    private String yhDesc;
+
     private String label;
 
     /**

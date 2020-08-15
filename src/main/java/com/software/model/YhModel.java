@@ -108,6 +108,8 @@ public class YhModel implements Serializable {
      */
     private String sign;
 
+    private String pic;
+
 
     public static YhModel convert(Yh yh){
           if(yh==null){
