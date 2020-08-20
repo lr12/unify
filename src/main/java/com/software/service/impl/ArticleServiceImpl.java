@@ -2,7 +2,9 @@ package com.software.service.impl;
 
 import com.software.entity.Article;
 import com.software.entity.ArticleExample;
+import com.software.entity.Yh;
 import com.software.mapper.ArticleMapper;
+import com.software.mapper.YhMapper;
 import com.software.model.ArticleModel;
 import com.software.service.ArticleService;
 import org.apache.logging.log4j.LogManager;
@@ -19,6 +21,8 @@ public class ArticleServiceImpl implements ArticleService {
     Logger logger = LogManager.getLogger(ArticleServiceImpl.class);
     @Resource
     private ArticleMapper articleMapper;
+    @Resource
+    private YhMapper yhMapper;
     @Override
     public boolean insert_article(ArticleModel articleModel) {
         try {
@@ -47,8 +51,15 @@ public class ArticleServiceImpl implements ArticleService {
                 return articleModels;
             }
             for(Article article:articles){
-
-                articleModels.add(ArticleModel.convertToArticleModel(article));
+                ArticleModel articleModel=ArticleModel.convertToArticleModel(article);
+                Yh yh=yhMapper.selectByPrimaryKey(articleModel.getUserId());
+                logger.info("=====================yhId:{},yh{}",articleModel.getUserId(),yh);
+                if(yh!=null){
+                    articleModel.setPic(yh.getPic());
+                    articleModel.setYhName(yh.getName());
+                    articleModel.setYhDesc(yh.getDesc());
+                }
+                articleModels.add(articleModel);
             }
         }catch (Exception e){
             logger.error("showAllArticle err:{}",e);

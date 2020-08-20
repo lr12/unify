@@ -107,6 +107,12 @@ public class ArticleModel implements Serializable {
 
     private String modify_time_str;
 
+    private String pic;
+
+    private String yhName;
+
+    private String yhDesc;
+
     public static Article convertToArticle(ArticleModel articleModel){
         if(articleModel==null){
             return null;
@@ -136,9 +142,13 @@ public class ArticleModel implements Serializable {
         if(article.getModifyTme()!=null){
             articleModel.setModify_time_str(DateUtil.format(article.getModifyTme(),DateUtil.hmsFormat));
         }
+        logger.info("article=======content:{}",article.getContent());
         if(article.getContent()!=null){
             try {
-                articleModel.setContent_str(new String(article.getContent(), "utf-8"));
+
+                String content_str=new String(article.getContent(), "utf-8");
+                logger.info("article=======content_str:{}",content_str);
+                articleModel.setContent_str(content_str);
             }
             catch (Exception e){
                 logger.error("文章内容二进制流转文字异常:{}",e);
