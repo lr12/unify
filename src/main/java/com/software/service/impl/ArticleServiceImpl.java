@@ -46,7 +46,7 @@ public class ArticleServiceImpl implements ArticleService {
         try {
             ArticleExample articleExample =new ArticleExample();
             //shareExample.setOrderByClause("id desc");
-            List<Article> articles=articleMapper.selectByExample(articleExample);
+            List<Article> articles=articleMapper.selectByExampleWithBLOBs(articleExample);
             if(articles==null||articles.size()==0){
                 return articleModels;
             }
