@@ -99,4 +99,20 @@ public class YhController {
         return  responseModel;
     }
 
+
+    @RequestMapping(value="updatePic.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseModel updatePic(HttpServletRequest request, HttpServletResponse response, @RequestBody YhModel yhModel){
+        logger.info("updatePic参数为{}",yhModel);
+        String pic=yhModel.getPic();
+        if(pic==null){
+            return ResponseModel.createFailResponse("图片为空",100012);
+        }
+        String yhID=((YhModel) request.getSession().getAttribute("yhModel")).getUserid();
+        YhModel data=yhService.getYhModelByUserId(yhID);
+        data.setPic(pic);
+        boolean success=yhService.updateYhModel(data);
+        ResponseModel<Boolean> responseModel =ResponseModel.createSuccessResponse(success);
+        return  responseModel;
+    }
 }
