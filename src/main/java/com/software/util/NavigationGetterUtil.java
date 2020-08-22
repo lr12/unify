@@ -33,7 +33,7 @@ public class NavigationGetterUtil {
         int count=0; //统计取到的字符数
         //初始化栈
         charStack = new Stack<Character>();
-        for(int i=0;str!=null;i++){
+        for(int i=0;str!=null&&i<str.length();i++){
             char c = str.charAt(i);
 
             if(c=='<'){
@@ -148,5 +148,9 @@ public class NavigationGetterUtil {
             stringStack.pop();
         }
         return strBuffer.toString();
+    }
+
+    public static void main(String[] args){
+        System.out.println(new NavigationGetterUtil().getNavigWithCorrectTag("工作量我了么薪努力<br>睡觉图片<br><br>睡觉简历听<br><br>270943<br>",11));
     }
 }

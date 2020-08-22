@@ -148,14 +148,16 @@ public class ArticleModel implements Serializable {
             try {
                 content_str=new String(article.getContent(), "utf-8");
                 articleModel.setContent_str(content_str);
+                articleModel.setShortDesc(new NavigationGetterUtil().getNavigWithCorrectTag(content_str,40));
             }
             catch (Exception e){
                 logger.error("文章内容二进制流转文字异常:{}",e);
             }
-            articleModel.setShortDesc(new NavigationGetterUtil().getNavigWithCorrectTag(content_str,40));
+
         }
         articleModel.setContent(null);
         return articleModel;
     }
+
 
 }
