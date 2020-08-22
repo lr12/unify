@@ -106,6 +106,7 @@ public class VideoModel implements Serializable {
      */
     private String repos;
 
+    private Integer duration;
 
     public static Video convertToVideo(VideoModel videoModel){
         if(videoModel==null){
