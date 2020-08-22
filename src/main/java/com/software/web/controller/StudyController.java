@@ -6,6 +6,7 @@ import com.software.model.StudyModel;
 import com.software.model.YhModel;
 import com.software.service.ArticleService;
 import com.software.service.StudyService;
+import com.software.util.DateUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,4 +50,32 @@ public class StudyController {
         return  responseModel;
     }
 
+
+    @RequestMapping(value="showRankAllStudy.do", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseModel showAllRankStudy(HttpServletRequest request,HttpServletResponse response){
+        ResponseModel<List> responseModel=new ResponseModel<>();
+        Date end=new Date();
+        Date begin= DateUtil.addDays(end,-1);
+        List<StudyModel> studyModels=studyService.showYesAllStudyModel(begin,end);
+        responseModel.setCode(0);
+        responseModel.setMsg("操作成功");
+        responseModel.setStatus("success");
+        responseModel.setData(studyModels);
+        return responseModel;
+    }
+
+    @RequestMapping(value="showRankRelateStudy.do", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseModel showRankRelateStudy(HttpServletRequest request,HttpServletResponse response){
+        ResponseModel<List> responseModel=new ResponseModel<>();
+        Date end=new Date();
+        Date begin= DateUtil.addDays(end,-1);
+        List<StudyModel> studyModels=studyService.showYesRelateStudyModel(begin,end);
+        responseModel.setCode(0);
+        responseModel.setMsg("操作成功");
+        responseModel.setStatus("success");
+        responseModel.setData(studyModels);
+        return responseModel;
+    }
 }

@@ -54,6 +54,8 @@ public class StudyModel implements Serializable {
 
     private String yhDesc;
 
+    private Integer rank;
+
     public static Study convertToStudy(StudyModel studyModel){
         if(studyModel==null){
             return null;
