@@ -53,7 +53,6 @@ public class ArticleServiceImpl implements ArticleService {
             for(Article article:articles){
                 ArticleModel articleModel=ArticleModel.convertToArticleModel(article);
                 Yh yh=yhMapper.selectByPrimaryKey(articleModel.getUserId());
-                logger.info("=====================yhId:{},yh{}",articleModel.getUserId(),yh);
                 if(yh!=null){
                     articleModel.setPic(yh.getPic());
                     articleModel.setYhName(yh.getName());

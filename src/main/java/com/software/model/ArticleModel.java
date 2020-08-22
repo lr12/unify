@@ -2,6 +2,7 @@ package com.software.model;
 
 import com.software.entity.Article;
 import com.software.util.DateUtil;
+import com.software.util.NavigationGetterUtil;
 import lombok.Data;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -142,17 +143,16 @@ public class ArticleModel implements Serializable {
         if(article.getModifyTme()!=null){
             articleModel.setModify_time_str(DateUtil.format(article.getModifyTme(),DateUtil.hmsFormat));
         }
-        logger.info("article=======content:{}",article.getContent());
         if(article.getContent()!=null){
+            String content_str=null;
             try {
-
-                String content_str=new String(article.getContent(), "utf-8");
-                logger.info("article=======content_str:{}",content_str);
+                content_str=new String(article.getContent(), "utf-8");
                 articleModel.setContent_str(content_str);
             }
             catch (Exception e){
                 logger.error("文章内容二进制流转文字异常:{}",e);
             }
+            articleModel.setShortDesc(new NavigationGetterUtil().getNavigWithCorrectTag(content_str,40));
         }
         articleModel.setContent(null);
         return articleModel;
