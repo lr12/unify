@@ -50,7 +50,7 @@ public class LikeDataController {
     }
 
 
-    @RequestMapping(value="doLike.do",method = RequestMethod.POST)
+    @RequestMapping(value="postLike.do",method = RequestMethod.POST)
     @ResponseBody
     public ResponseModel doLike(HttpServletRequest request, HttpServletResponse response, @RequestBody LikeDataModel likeDataModel){
 
