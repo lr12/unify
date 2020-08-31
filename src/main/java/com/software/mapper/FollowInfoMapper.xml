@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.message.os.mapper.FollowInfoMapper">
+    
+    <resultMap type="FollowInfo" id="FollowInfoResult">
+        <result property="userId"    column="user_id"    />
+        <result property="friendId"    column="friend_id"    />
+        <result property="friendName"    column="friend_name"    />
+        <result property="friendImg"    column="friend_img"    />
+        <result property="friendDesc"    column="friend_desc"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="commonCount"    column="common_count"    />
+    </resultMap>
+
+    <sql id="selectFollowInfoVo">
+        select user_id, friend_id,create_time from follow_info
+    </sql>
+
+    <select id="selectFollowInfoList" parameterType="map" resultMap="FollowInfoResult">
+        select fi.user_id, fi.friend_id, fi.create_time, yh.name as friend_name,yh.desc as friend_desc,
+        yh.pic as friend_img
+        from follow_info fi left join yh on fi.friend_id = yh.userid
+        <where>  
+            <if test="userId != null  and userId != ''"> and fi.user_id = #{userId}</if>
+            <if test="friendId != null  and friendId != ''"> and fi.friend_id = #{friendId}</if>
+            <if test="friendName != null  and friendName != ''"> and yh.name like concat('%', #{friendName}, '%')</if>
+        </where>
+        LIMIT ${pageNo}, ${pageSize}
+    </select>
+    
+    <select id="countFollowInfoList" parameterType="map" resultType="java.lang.Integer">
+        select count(1)
+        from follow_info fi left join yh on fi.friend_id = yh.userid
+        <where>  
+            <if test="userId != null  and userId != ''"> and fi.user_id = #{userId}</if>
+            <if test="friendId != null  and friendId != ''"> and fi.friend_id = #{friendId}</if>
+            <if test="friendName != null  and friendName != ''"> and yh.name like concat('%', #{friendName}, '%')</if>
+        </where>
+    </select>
+    
+    <!-- 查询粉丝列表 -->
+    <select id="selectFansList" parameterType="map" resultMap="FollowInfoResult">
+        SELECT
+			fi.user_id as friend_id,
+			fi.create_time,
+			yh.NAME AS friend_name,
+			yh.DESC AS friend_desc,
+			yh.pic AS friend_img 
+		FROM
+			follow_info fi
+			LEFT JOIN yh ON fi.user_id = yh.userid
+			where fi.friend_id = #{userId}
+        LIMIT ${pageNo}, ${pageSize}
+    </select>
+    
+    <select id="countFansList" parameterType="map" resultType="java.lang.Integer">
+        select count(1)
+        FROM
+			follow_info fi
+			LEFT JOIN yh ON fi.user_id = yh.userid
+			where fi.friend_id = #{userId}
+    </select>
+    
+    <!-- 发现共同好友 -->
+    <select id="selectCommonFriendList" parameterType="map" resultMap="FollowInfoResult">
+	    SELECT
+			fi.user_id as friend_id,
+			yh.`name` as friend_name,
+			yh.DESC AS friend_desc,
+			yh.pic AS friend_img,
+			count( * ) AS common_count 
+		FROM
+			follow_info fi 
+			LEFT JOIN yh on yh.userid = fi.user_id
+		WHERE
+			fi.user_id != #{userId}
+			AND fi.friend_id IN ( SELECT friend_id FROM follow_info WHERE user_id = #{userId} ) 	  
+		GROUP BY
+			user_id
+			limit 5
+    </select>
+    
+    <select id="selectFollowInfoById" parameterType="String" resultMap="FollowInfoResult">
+        <include refid="selectFollowInfoVo"/>
+        where user_id = #{userId}
+    </select>
+    
+    <select id="selectFollowInfoBySelective" parameterType="FollowInfo" resultMap="FollowInfoResult">
+        <include refid="selectFollowInfoVo"/>
+        where user_id = #{userId} and friend_id = #{friendId}
+    </select>
+        
+    <insert id="insertFollowInfo" parameterType="FollowInfo">
+        insert into follow_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null  and userId != ''">user_id,</if>
+            <if test="friendId != null  and friendId != ''">friend_id,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null  and userId != ''">#{userId},</if>
+            <if test="friendId != null  and friendId != ''">#{friendId},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+    
+    <!-- 互相关注列表接口 -->
+    <select id="selectCrossList" parameterType="map" resultMap="FollowInfoResult">
+        SELECT
+			fi.user_id as friend_id,
+			fi.create_time,
+			yh.NAME AS friend_name,
+			yh.DESC AS friend_desc,
+			yh.pic AS friend_img 
+		FROM
+			follow_info fi
+			LEFT JOIN yh ON fi.user_id = yh.userid
+			where fi.friend_id = #{userId}
+		and exists(SELECT 1 from follow_info fii where fii.user_id = #{userId} and fii.friend_id=fi.user_id)
+        LIMIT ${pageNo}, ${pageSize}
+    </select>
+    
+    <!-- 互相关注总数 -->
+    <select id="countCrossList" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+			count(1)
+		FROM
+			follow_info fi
+			LEFT JOIN yh ON fi.user_id = yh.userid
+			where fi.friend_id = #{userId}
+		and exists(SELECT 1 from follow_info fii where fii.user_id = #{userId} and fii.friend_id=fi.user_id)
+    </select>
+
+    <update id="updateFollowInfo" parameterType="FollowInfo">
+        update follow_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="friendId != null  and friendId != ''">friend_id = #{friendId},</if>
+        </trim>
+        where user_id = #{userId}
+    </update>
+
+    <delete id="deleteFollowInfoById" parameterType="FollowInfo">
+        delete from follow_info where user_id = #{userId} and friend_id = #{friendId}
+    </delete>
+
+    <delete id="deleteFollowInfoByIds" parameterType="String">
+        delete from follow_info where user_id in 
+        <foreach item="userId" collection="array" open="(" separator="," close=")">
+            #{userId}
+        </foreach>
+    </delete>
+    
+</mapper>

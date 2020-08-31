@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.message.os.mapper.MessageInfoMapper">
+    
+    <resultMap type="MessageInfo" id="MessageInfoResult">
+        <result property="id"    column="id"    />
+        <result property="message"    column="message"    />
+    </resultMap>
+
+    <sql id="selectMessageInfoVo">
+        select id, message from message_info
+    </sql>
+
+    <select id="selectMessageInfoList" parameterType="MessageInfo" resultMap="MessageInfoResult">
+        <include refid="selectMessageInfoVo"/>
+        <where>  
+            <if test="message != null  and message != ''"> and message = #{message}</if>
+        </where>
+    </select>
+    
+    <select id="selectMessageInfoById" parameterType="String" resultMap="MessageInfoResult">
+        <include refid="selectMessageInfoVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertMessageInfo" parameterType="MessageInfo">
+        insert into message_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  and id != ''">id,</if>
+            <if test="message != null  and message != ''">message,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  and id != ''">#{id},</if>
+            <if test="message != null  and message != ''">#{message},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMessageInfo" parameterType="MessageInfo">
+        update message_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="message != null  and message != ''">message = #{message},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteMessageInfoById" parameterType="String">
+        delete from message_info where id = #{id}
+    </delete>
+
+    <delete id="deleteMessageInfoByIds" parameterType="String">
+        delete from message_info where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

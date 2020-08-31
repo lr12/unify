@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.message.os.mapper.PrivateMessageMapper">
+    
+    <resultMap type="PrivateMessage" id="PrivateMessageResult">
+        <result property="id"    column="id"    />
+        <result property="messageCount"    column="message_count"    />
+        <result property="userId"    column="user_id"    />
+        <result property="friendId"    column="friend_id"    />
+        <result property="senderId"    column="sender_id"    />
+        <result property="receiverId"    column="receiver_id"    />
+        <result property="messageType"    column="message_type"    />
+        <result property="messageId"    column="message_id"    />
+        <result property="messageContext"    column="message_context"    />
+        <result property="sendTime"    column="send_time"    />
+        <result property="status"    column="status"    />
+        <result property="sendName"    column="send_name"    />
+        <result property="receiverName"    column="receiver_name"    />
+        <result property="sendImg"    column="send_img"    />
+    </resultMap>
+
+    <sql id="selectPrivateMessageVo">
+        select id, user_id, friend_id, sender_id, receiver_id, message_type, message_id, send_time, status from private_message
+    </sql>
+
+    <select id="selectPrivateMessageList" parameterType="map" resultMap="PrivateMessageResult">
+        SELECT
+			p.id,
+			sum( CASE WHEN p.`status` = 1 THEN 1 ELSE 0 END ) AS message_count,
+			p.user_id,
+			p.friend_id,
+			p.sender_id,
+			p.receiver_id,
+			p.send_time,
+			p.message_type,
+			mi.message AS message_context,
+			u.name AS send_name,
+			u.pic AS send_img 
+		FROM
+			( SELECT * FROM private_message ORDER BY id DESC ) p
+		  	LEFT JOIN message_info mi ON mi.id = p.message_id
+			INNER JOIN yh u ON u.userid = friend_id 
+		WHERE
+			p.user_id = #{userId} 
+			AND p.`status` != 3 
+		GROUP BY
+			p.friend_id 
+		ORDER BY
+			p.send_time DESC 
+			LIMIT ${pageNo}, ${pageSize}
+    </select>
+    
+    <!-- 根据userId查询私信消息列表数量 -->
+    <select id="countPrivateMessageList" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+			count(1)
+		FROM
+			( SELECT * FROM private_message ORDER BY id DESC ) p
+		  	LEFT JOIN message_info mi ON mi.id = p.message_id
+			INNER JOIN yh u ON u.userid = friend_id 
+		WHERE
+			p.user_id = #{userId} 
+			AND p.`status` != 3 
+		GROUP BY
+			p.friend_id 
+		ORDER BY
+			p.send_time DESC 
+    </select>
+    
+    <!-- 查询单条详情 -->
+    <select id="selectPrivateMessageDetail" parameterType="map" resultMap="PrivateMessageResult">
+	    SELECT
+			p.id,
+			mi.message AS message_context,
+			p.sender_id,
+			p.receiver_id,
+			p.send_time,
+			p.`status`,
+			u.`name` AS send_name,
+			u.pic AS send_image,
+			uu.`name` AS receiver_name 
+		FROM
+			private_message p
+			LEFT JOIN message_info mi on mi.id = p.message_id
+			INNER JOIN yh u ON u.userid = p.sender_id
+			INNER JOIN yh uu ON uu.userid = p.friend_id 
+		WHERE
+			p.user_id = #{userId} 
+			AND p.friend_id = #{friendId} 
+			AND p.`status` != 3 
+		ORDER BY
+			p.send_time DESC 
+			LIMIT ${pageNo}, ${pageSize}
+    </select>
+    
+    <select id="countPrivateMessageDetail" parameterType="map" resultType="java.lang.Integer">
+        SELECT
+			count(1)
+		FROM
+			private_message p
+			LEFT JOIN message_info mi on mi.id = p.message_id
+			INNER JOIN yh u ON u.userid = p.sender_id
+			INNER JOIN yh uu ON uu.userid = p.friend_id 
+		WHERE
+			p.user_id = #{userId} 
+			AND p.friend_id = #{friendId} 
+			AND p.`status` != 3 
+		ORDER BY
+			p.send_time DESC  
+    </select>
+    
+    <update id="delPrivateMessageDetail" parameterType="map">
+        UPDATE private_message SET status=3 WHERE user_id=#{userId} AND friend_id=#{friendId}
+    </update>
+    
+    <update id="updatePrivateMessageDetail" parameterType="map">
+    	UPDATE private_message SET status=2 WHERE user_id=#{userId} AND friend_id=#{friendId} 
+    </update>
+    
+    <select id="unReadCount" parameterType="map" resultType="java.lang.Integer">
+    	SELECT COUNT(*) FROM private_message WHERE user_id=#{userId} AND receiver_id=#{friendId} AND status=1
+    </select>
+    
+    <select id="selectPrivateMessageById" parameterType="String" resultMap="PrivateMessageResult">
+        <include refid="selectPrivateMessageVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertPrivateMessage" parameterType="PrivateMessage">
+        insert into private_message
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  and id != ''">id,</if>
+            <if test="userId != null  and userId != ''">user_id,</if>
+            <if test="friendId != null  and friendId != ''">friend_id,</if>
+            <if test="senderId != null  and senderId != ''">sender_id,</if>
+            <if test="receiverId != null  and receiverId != ''">receiver_id,</if>
+            <if test="messageType != null ">message_type,</if>
+            <if test="messageId != null  and messageId != ''">message_id,</if>
+            <if test="sendTime != null ">send_time,</if>
+            <if test="status != null ">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  and id != ''">#{id},</if>
+            <if test="userId != null  and userId != ''">#{userId},</if>
+            <if test="friendId != null  and friendId != ''">#{friendId},</if>
+            <if test="senderId != null  and senderId != ''">#{senderId},</if>
+            <if test="receiverId != null  and receiverId != ''">#{receiverId},</if>
+            <if test="messageType != null ">#{messageType},</if>
+            <if test="messageId != null  and messageId != ''">#{messageId},</if>
+            <if test="sendTime != null ">#{sendTime},</if>
+            <if test="status != null ">#{status},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePrivateMessage" parameterType="PrivateMessage">
+        update private_message
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null  and userId != ''">user_id = #{userId},</if>
+            <if test="friendId != null  and friendId != ''">friend_id = #{friendId},</if>
+            <if test="senderId != null  and senderId != ''">sender_id = #{senderId},</if>
+            <if test="receiverId != null  and receiverId != ''">receiver_id = #{receiverId},</if>
+            <if test="messageType != null ">message_type = #{messageType},</if>
+            <if test="messageId != null  and messageId != ''">message_id = #{messageId},</if>
+            <if test="sendTime != null ">send_time = #{sendTime},</if>
+            <if test="status != null ">status = #{status},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePrivateMessageById" parameterType="String">
+        delete from private_message where id = #{id}
+    </delete>
+
+    <delete id="deletePrivateMessageByIds" parameterType="String">
+        delete from private_message where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>
