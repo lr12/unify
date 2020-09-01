@@ -53,7 +53,7 @@ public class ArticleServiceImpl implements ArticleService {
         List<ArticleModel> articleModels = new ArrayList<>();
         try {
             ArticleExample articleExample =new ArticleExample();
-            articleExample.setOrderByClause("id desc");
+            articleExample.setOrderByClause("articleId desc");
             List<Article> articles=articleMapper.selectByExampleWithBLOBs(articleExample);
             if(articles==null||articles.size()==0){
                 return articleModels;
