@@ -54,14 +54,30 @@ public class LikeDataServiceImpl implements LikeDataService {
             LikeDataExample.Criteria criteria=likeDataExample.createCriteria();
             criteria.andTypeEqualTo(type);
             criteria.andArticleIdEqualTo(typeId);
-            List<LikeData> likeDataList=likeDataMapper.selectByExample(likeDataExample);
-            if(likeDataList==null){
-                return 0;
-            }
-            return likeDataList.size();
+            int count=likeDataMapper.countByExample(likeDataExample);
+            return count;
         }catch (Exception e){
             logger.error("getLikeCount err,typeId:{},type:{},err:{}",typeId,type,e);
         }
         return 0;
+    }
+
+    @Override
+    public boolean getSelfLike(String userId, int typeId, int type) {
+        try {
+            LikeDataExample likeDataExample=new LikeDataExample();
+            LikeDataExample.Criteria criteria=likeDataExample.createCriteria();
+            criteria.andUserIdEqualTo(userId);
+            criteria.andTypeEqualTo(type);
+            criteria.andArticleIdEqualTo(typeId);
+            int count=likeDataMapper.countByExample(likeDataExample);
+            if(count>0){
+                return true;
+            }
+            return false;
+        }catch (Exception e){
+            logger.error("getSelfLike err,typeId:{},type:{},err:{}",typeId,type,e);
+        }
+        return false;
     }
 }

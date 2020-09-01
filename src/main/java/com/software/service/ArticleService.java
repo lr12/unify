@@ -14,5 +14,5 @@ public interface ArticleService {
 
     public List<ArticleModel> show_ArticleModel(String userid);
 
-    public List<ArticleModel> showAllArticle();
+    public List<ArticleModel> showAllArticle(String userId);
 }

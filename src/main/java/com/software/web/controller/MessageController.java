@@ -1,7 +1,10 @@
 package com.software.web.controller;
 
+import com.software.model.ShareModel;
 import com.software.service.MessageService;
 import com.software.util.ResultVO;
+import com.software.web.controller.vo.FollowVO;
+import com.software.web.controller.vo.MessageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
@@ -53,9 +57,10 @@ public class MessageController {
 	 * @param userId 当前用户id
 	 * @param friendId 好友id
 	 * */
-	@PostMapping(value = "/delDetail")
-    public ResultVO delDetail(@RequestParam("userId")String userId,@RequestParam("friendId")String friendId) {
-		return messageService.delDetail(userId,friendId);
+	@RequestMapping(value="delDetail.do",method = RequestMethod.POST)
+	@ResponseBody
+    public ResultVO delDetail(HttpServletRequest request, HttpServletResponse response, @RequestBody MessageVO messageVO) {
+		return messageService.delDetail(messageVO.getUserId(),messageVO.getFriendId());
 	}
 	
 	/**
@@ -76,10 +81,11 @@ public class MessageController {
 	 * @param msgType 消息类型 1:普通消息 2:系统消息
 	 * @param msgContext 消息内容
 	 * */
-	@PostMapping(value = "/sendMsg")
-    public ResultVO sendMsg(@RequestParam("userId")String userId,@RequestParam("friendId")String friendId,
-    		@RequestParam("msgType")Integer msgType,@RequestParam("msgContext")String msgContext) {
-		return messageService.sendMsg(userId,friendId,msgType,msgContext);
+	@RequestMapping(value="sendMsg.do",method = RequestMethod.POST)
+	@ResponseBody
+    public ResultVO sendMsg(HttpServletRequest request, HttpServletResponse response, @RequestBody MessageVO messageVO) {
+
+		return messageService.sendMsg(messageVO.getUserId(),messageVO.getFriendId(),messageVO.getMsgType(),messageVO.getMsgContext());
 	}
 	
 	/**
@@ -88,10 +94,10 @@ public class MessageController {
 	 * @param friendId 好友id
 	 * @param type 1:关注 2:取消关注
 	 * */
-	@PostMapping(value = "/follow")
-    public ResultVO follow(@RequestParam("userId")String userId,@RequestParam("friendId")String friendId,
-    		@RequestParam("type")Integer type) {
-		return messageService.follow(userId,friendId,type);
+	@RequestMapping(value="follow.do",method = RequestMethod.POST)
+	@ResponseBody
+    public ResultVO follow(HttpServletRequest request, HttpServletResponse response, @RequestBody FollowVO followVO) {
+		return messageService.follow(followVO.getUserId(),followVO.getFriendId(),followVO.getType());
 	}
 	
 	/**

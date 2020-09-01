@@ -35,7 +35,8 @@ public class VideoController {
     @ResponseBody
     public ResponseModel getVideo(HttpServletRequest request,HttpServletResponse response){
         ResponseModel<List> responseModel=new ResponseModel<>();
-        List<VideoModel> videoModels=videoService.getAllVideos();
+        YhModel yhModel=(YhModel) request.getSession().getAttribute("yhModel");
+        List<VideoModel> videoModels=videoService.getAllVideos(yhModel.getUserid());
         responseModel.setCode(0);
         responseModel.setMsg("操作成功");
         responseModel.setStatus("success");

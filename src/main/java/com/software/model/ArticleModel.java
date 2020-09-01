@@ -114,6 +114,12 @@ public class ArticleModel implements Serializable {
 
     private String yhDesc;
 
+    private int likeCont;
+
+    private boolean selfLike;
+
+    private int commentCount;
+
     public static Article convertToArticle(ArticleModel articleModel){
         if(articleModel==null){
             return null;
@@ -155,6 +161,7 @@ public class ArticleModel implements Serializable {
             }
 
         }
+
         articleModel.setContent(null);
         return articleModel;
     }

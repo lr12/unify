@@ -8,5 +8,5 @@ public interface VideoService {
 
     public boolean insertVideo(VideoModel videoModel);
 
-    public List<VideoModel> getAllVideos();
+    public List<VideoModel> getAllVideos(String userId);
 }

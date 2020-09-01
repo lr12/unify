@@ -13,4 +13,5 @@ public interface CommentService {
 
     public List<CommentModel> show_shareModelByAid(int aid,int type);
 
+    public int getCommentCount(int typeId, int type);
 }

@@ -53,8 +53,9 @@ public class ArticleController {
     @RequestMapping(value="showAllArticle.do", method = RequestMethod.GET)
     @ResponseBody
     public ResponseModel showAllArticle(HttpServletRequest request,HttpServletResponse response){
+        YhModel yhModel=(YhModel) request.getSession().getAttribute("yhModel");
         ResponseModel<List> responseModel=new ResponseModel<>();
-        List<ArticleModel> articleModels=articleService.showAllArticle();
+        List<ArticleModel> articleModels=articleService.showAllArticle(yhModel.getUserid());
         responseModel.setCode(0);
         responseModel.setMsg("操作成功");
         responseModel.setStatus("success");

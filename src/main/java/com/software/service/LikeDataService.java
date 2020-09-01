@@ -12,4 +12,6 @@ public interface LikeDataService {
 
 
     public int getLikeCount(int typeId,int type);
+
+    public boolean getSelfLike(String userId,int typeId,int type);
 }

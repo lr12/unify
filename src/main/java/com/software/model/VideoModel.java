@@ -108,6 +108,12 @@ public class VideoModel implements Serializable {
 
     private Integer duration;
 
+    private int likeCont;
+
+    private boolean selfLike;
+
+    private int commentCount;
+
     public static Video convertToVideo(VideoModel videoModel){
         if(videoModel==null){
             return null;

@@ -51,4 +51,21 @@ public class CommentServiceImpl implements CommentService {
         }
         return commentModels;
     }
+
+    @Override
+    public int getCommentCount(int typeId, int type) {
+        List<CommentModel> commentModels = new ArrayList<>();
+        try {
+            CommentExample commentExample =new CommentExample();
+            CommentExample.Criteria criteria =commentExample.createCriteria();
+            criteria.andArticleIdEqualTo(typeId);
+            criteria.andTypeEqualTo(type);
+            int count=commentMapper.countByExample(commentExample);
+            logger.info("getCommentCount:{},typeId:{}, type:{}",count,typeId, type);
+            return count;
+        }catch (Exception e){
+            logger.error("getCommentCount err:{}",e);
+        }
+        return 0;
+    }
 }
