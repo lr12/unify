@@ -115,4 +115,35 @@ public class YhController {
         ResponseModel<Boolean> responseModel =ResponseModel.createSuccessResponse(success);
         return  responseModel;
     }
+    @RequestMapping(value="updateUserInfo.do",method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseModel updateUserInfo(HttpServletRequest request, HttpServletResponse response, @RequestBody YhModel yhModel){
+        logger.info("updateUserInfo参数为{}",yhModel);
+        String yhID=((YhModel) request.getSession().getAttribute("yhModel")).getUserid();
+        YhModel data=yhService.getYhModelByUserId(yhID);
+        if(yhModel.getClassNo()!=null){
+            data.setClassNo(yhModel.getClassNo());
+        }
+        if(yhModel.getPassword()!=null){
+            data.setPassword(yhModel.getPassword());
+        }
+        if(yhModel.getUserid()!=null){
+            data.setUserid(yhModel.getUserid());
+        }
+        if(yhModel.getName()!=null){
+            data.setName(yhModel.getName());
+        }
+        if(yhModel.getDesc()!=null){
+            data.setDesc(yhModel.getDesc());
+        }
+        if(yhModel.getGrade()!=null){
+            data.setGrade(yhModel.getGrade());
+        }
+        if(yhModel.getPhone()!=null){
+            data.setPhone(yhModel.getPhone());
+        }
+        boolean success=yhService.updateYhModel(data);
+        ResponseModel<Boolean> responseModel =ResponseModel.createSuccessResponse(success);
+        return  responseModel;
+    }
 }
