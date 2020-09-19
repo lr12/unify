@@ -1,6 +1,8 @@
 package com.software.model;
 
 import com.software.entity.Comment;
+import com.software.entity.Yh;
+import com.software.mapper.YhMapper;
 import com.software.util.DateUtil;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
@@ -84,6 +86,12 @@ public class CommentModel implements Serializable {
 
     private Integer type;
 
+    private String pic;
+
+    private String yhName;
+
+    private String yhDesc;
+
 
     List<CommentModel> commentModelList;
 
@@ -96,7 +104,7 @@ public class CommentModel implements Serializable {
         return comment;
     }
 
-    public static CommentModel convertToCommentModel(Comment comment){
+    public static CommentModel convertToCommentModel(Comment comment, YhMapper yhMapper){
         if(comment==null){
             return null;
         }
@@ -107,6 +115,14 @@ public class CommentModel implements Serializable {
         }
         if(comment.getModifyTime()!=null){
             commentModel.setModify_time_str(DateUtil.format(comment.getModifyTime(),DateUtil.hmsFormat));
+        }
+        if(comment.getUserid()!=null){
+            Yh yh=yhMapper.selectByPrimaryKey(comment.getUserid());
+            if(yh!=null){
+                commentModel.setPic(yh.getPic());
+                commentModel.setYhName(yh.getName());
+                commentModel.setYhDesc(yh.getDesc());
+            }
         }
         return commentModel;
     }

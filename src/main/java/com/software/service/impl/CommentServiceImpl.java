@@ -3,6 +3,7 @@ package com.software.service.impl;
 import com.software.entity.Comment;
 import com.software.entity.CommentExample;
 import com.software.mapper.CommentMapper;
+import com.software.mapper.YhMapper;
 import com.software.model.CommentModel;
 import com.software.service.CommentService;
 import org.apache.logging.log4j.LogManager;
@@ -18,6 +19,8 @@ public class CommentServiceImpl implements CommentService {
     Logger logger = LogManager.getLogger(ShareServiceImpl.class);
     @Autowired
     CommentMapper commentMapper;
+    @Autowired
+    YhMapper yhMapper;
     @Override
     public boolean insert_comment(CommentModel commentModel) {
         try {
@@ -44,7 +47,7 @@ public class CommentServiceImpl implements CommentService {
                 return commentModels;
             }
             for(Comment comment:comments){
-                commentModels.add(CommentModel.convertToCommentModel(comment));
+                commentModels.add(CommentModel.convertToCommentModel(comment,yhMapper));
             }
         }catch (Exception e){
             logger.error("show_shareModelByAid err:{}",e);
