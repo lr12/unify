@@ -42,7 +42,10 @@ public class MessageService {
 		map.put("pageNo", (pageNo - 1) * pageSize);
 		map.put("userId", userId);
 		List<PrivateMessage> list = privateMessageMapper.selectPrivateMessageList(map);
-		int count = privateMessageMapper.countPrivateMessageList(map);
+		Integer count = privateMessageMapper.countPrivateMessageList(map);
+		if (count==null){
+			count=0;
+		}
 		PageUtils page = new PageUtils(list, count, pageSize, pageNo);
 		return ResultVO.ok().put("page", page);
 	}

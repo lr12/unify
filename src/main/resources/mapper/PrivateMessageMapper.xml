@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!-- 根据userId查询私信消息列表数量 -->
     <select id="countPrivateMessageList" parameterType="map" resultType="java.lang.Integer">
         SELECT
-			count(1)
+			count(*)
 		FROM
 			( SELECT * FROM private_message ORDER BY id DESC ) p
 		  	LEFT JOIN message_info mi ON mi.id = p.message_id
