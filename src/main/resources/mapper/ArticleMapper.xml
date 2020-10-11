@@ -441,7 +441,7 @@
     <include refid="Base_Column_List" />
     from article
     <where>
-      <if test="info != null  and info != ''"> where  title like concat('%', #{info}, '%')</if>
+      <if test="info != null  and info != ''">   title like concat('%', #{info}, '%')</if>
     </where>
     LIMIT ${pageNo}, ${pageSize}
   </select>

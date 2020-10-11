@@ -430,7 +430,7 @@
   <select id="searchYhByInfo" parameterType="map" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from yh<where><if test="info != null  and info != ''"> where  yh.name like concat('%', #{info}, '%')</if></where>
+    from yh<where><if test="info != null  and info != ''">   yh.name like concat('%', #{info}, '%')</if></where>
     LIMIT ${pageNo}, ${pageSize}
   </select>
 </mapper>
