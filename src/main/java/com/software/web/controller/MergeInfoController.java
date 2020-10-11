@@ -41,8 +41,8 @@ public class MergeInfoController {
         logger.info("searchInfo参数为info:{},pageNo:{},pageSize:{}",info,pageNo,pageSize);
         Map<String,Object> map=new HashMap<>();
         map.put("info",info);
-        map.put("pageNo",pageNo);
-        map.put("pageSize",pageSize);
+        map.put("pageSize", pageSize);
+        map.put("pageNo", (pageNo - 1) * pageSize);
         List<YhModel> yhModels= yhService.searchYhModel(map);
         ResponseModel<MergeInfoVO> responseModel =new ResponseModel<>();
         MergeInfoVO mergeInfoVO=new MergeInfoVO();
