@@ -439,7 +439,7 @@
   <select id="searchArticleByInfo" parameterType="map" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from yh
+    from article
     <where>
       <if test="info != null  and info != ''"> where  title like concat('%', #{info}, '%')</if>
     </where>
