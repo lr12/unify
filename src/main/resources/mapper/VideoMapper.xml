@@ -398,10 +398,7 @@
   <select id="searchVideoByInfo" parameterType="map" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from yh
-    <where>
-      <if test="info != null  and info != ''"> where  title like concat('%', #{info}, '%')</if>
-    </where>
+    from yh<where><if test="info != null  and info != ''"> where  title like concat('%', #{info}, '%')</if></where>
     LIMIT ${pageNo}, ${pageSize}
   </select>
 </mapper>
