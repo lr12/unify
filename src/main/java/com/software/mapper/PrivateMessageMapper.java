@@ -66,7 +66,7 @@ public interface PrivateMessageMapper
     /**
      * 根据userId查询消息列表数量
      * */
-    public int countPrivateMessageList(Map<String, Object> map);
+    public Integer countPrivateMessageList(Map<String, Object> map);
 
     /**
      * 根据用户id和好友id查询私信详情记录
