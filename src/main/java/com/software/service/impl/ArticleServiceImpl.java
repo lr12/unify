@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -77,5 +78,34 @@ public class ArticleServiceImpl implements ArticleService {
             logger.error("showAllArticle err:{}",e);
         }
         return articleModels;
+    }
+
+    @Override
+    public List<ArticleModel> searchArticleByInfo(Map<String, Object> map) {
+        List<ArticleModel> articleModels=new ArrayList<>();
+        List<Article> articles=articleMapper.searchArticleByInfo(map);
+        if(articles==null||articles.size()==0){
+            return articleModels;
+        }
+        for(Article article:articles){
+            articleModels.add(buildArticleModel(article));
+        }
+        return articleModels;
+    }
+
+    private ArticleModel buildArticleModel(Article article){
+        ArticleModel articleModel=ArticleModel.convertToArticleModel(article);
+        Yh yh=yhMapper.selectByPrimaryKey(articleModel.getUserId());
+        if(yh!=null){
+            articleModel.setPic(yh.getPic());
+            articleModel.setYhName(yh.getName());
+            articleModel.setYhDesc(yh.getDesc());
+        }
+        int likeCount=likeDataService.getLikeCount(articleModel.getArticleId(),0);
+        boolean selfLike=likeDataService.getSelfLike(articleModel.getUserId(),articleModel.getArticleId(),0);
+        articleModel.setLikeCont(likeCount);
+        articleModel.setSelfLike(selfLike);
+        articleModel.setCommentCount(commentService.getCommentCount(articleModel.getArticleId(),0));
+        return articleModel;
     }
 }

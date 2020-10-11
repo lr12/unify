@@ -3,6 +3,8 @@ package com.software.mapper;
 import com.software.entity.Video;
 import com.software.entity.VideoExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface VideoMapper {
@@ -93,4 +95,6 @@ public interface VideoMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Video record);
+
+    public List<Video> searchVideoByInfo(Map<String,Object> map);
 }

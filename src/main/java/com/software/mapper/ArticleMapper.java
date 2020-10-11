@@ -3,6 +3,8 @@ package com.software.mapper;
 import com.software.entity.Article;
 import com.software.entity.ArticleExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ArticleMapper {
@@ -117,4 +119,6 @@ public interface ArticleMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Article record);
+
+    List<Article> searchArticleByInfo(Map<String,Object> map);
 }

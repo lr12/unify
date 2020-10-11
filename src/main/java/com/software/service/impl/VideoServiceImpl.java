@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class VideoServiceImpl  implements VideoService {
@@ -55,25 +56,42 @@ public class VideoServiceImpl  implements VideoService {
                 return videoModels;
             }
             for(Video video:videos){
-                VideoModel videoModel=VideoModel.convertToVideoModel(video);
-                Yh yh=yhMapper.selectByPrimaryKey(videoModel.getYhId());
-                logger.info("=====================yhId:{},yh{}",video.getYhId(),yh);
-                if(yh!=null){
-                    videoModel.setPic(yh.getPic());
-                    videoModel.setYhName(yh.getName());
-                    videoModel.setYhDesc(yh.getDesc());
-                }
-                int likeCount=likeDataService.getLikeCount(video.getId(),1);
-                boolean selfLike=likeDataService.getSelfLike(userId,video.getId(),1);
-                videoModel.setLikeCont(likeCount);
-                videoModel.setSelfLike(selfLike);
-                videoModel.setCommentCount(commentService.getCommentCount(video.getId(),1));
-                logger.info(videoModel);
-                videoModels.add(videoModel);
+                videoModels.add(buildVideoModel(video));
             }
         }catch (Exception e){
             logger.error("getAllVideos err:{}",e);
         }
         return videoModels;
+    }
+
+    @Override
+    public List<VideoModel> searchVideoByInfo(Map<String, Object> map) {
+        List<VideoModel> videoModels=new ArrayList<>();
+        List<Video> videos=videoMapper.searchVideoByInfo(map);
+        if(videos==null){
+            return videoModels;
+        }
+        for(Video video:videos){
+
+            videoModels.add(buildVideoModel(video));
+        }
+        return videoModels;
+    }
+
+    private VideoModel buildVideoModel(Video video){
+        VideoModel videoModel=VideoModel.convertToVideoModel(video);
+        Yh yh=yhMapper.selectByPrimaryKey(videoModel.getYhId());
+        logger.info("=====================yhId:{},yh{}",video.getYhId(),yh);
+        if(yh!=null){
+            videoModel.setPic(yh.getPic());
+            videoModel.setYhName(yh.getName());
+            videoModel.setYhDesc(yh.getDesc());
+        }
+        int likeCount=likeDataService.getLikeCount(video.getId(),1);
+        boolean selfLike=likeDataService.getSelfLike(yh.getUserid(),video.getId(),1);
+        videoModel.setLikeCont(likeCount);
+        videoModel.setSelfLike(selfLike);
+        videoModel.setCommentCount(commentService.getCommentCount(video.getId(),1));
+        return videoModel;
     }
 }

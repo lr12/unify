@@ -3,6 +3,8 @@ package com.software.mapper;
 import com.software.entity.Yh;
 import com.software.entity.YhExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface YhMapper {
@@ -93,4 +95,6 @@ public interface YhMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Yh record);
+
+    List<Yh> searchYhByInfo(Map<String,Object> map);
 }
