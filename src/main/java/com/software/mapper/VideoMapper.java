@@ -96,5 +96,6 @@ public interface VideoMapper {
      */
     int updateByPrimaryKey(Video record);
 
+
     public List<Video> searchVideoByInfo(Map<String,Object> map);
 }
