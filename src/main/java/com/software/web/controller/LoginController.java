@@ -76,7 +76,7 @@ public class LoginController {
     public List<String> test(HttpServletRequest request, HttpServletResponse response, ModelMap model){
 
         List<String> result = new ArrayList<>();
-        result.add("周仪大美女老婆你好，这是你老公的服务器");
+        result.add("服务器");
         //YhModel yhModel=yhService.getYhModelByUserId("lirui");
         //System.out.println(yhModel.getPassword());
         //logger.info("测试用户信息:%s",yhModel.toString());
@@ -90,23 +90,23 @@ public class LoginController {
     }
 
 
-    @RequestMapping(value="circle.do",method = RequestMethod.GET)
-    public String circle(HttpServletRequest request, HttpServletResponse response, ModelMap model){
+//    @RequestMapping(value="circle.do",method = RequestMethod.GET)
+//    public String circle(HttpServletRequest request, HttpServletResponse response, ModelMap model){
+//
+//        return "main/circle";
+//    }
 
-        return "main/circle";
-    }
-
-    @RequestMapping(value="letter.do",method = RequestMethod.GET)
-    public String letter(HttpServletRequest request, HttpServletResponse response, ModelMap model){
-        Map<String,String> map=new HashMap<>();
-        for (Map.Entry<String,String> entry : map.entrySet()){
-                  String key = entry.getKey();
-                  String value = entry.getValue();
-                  logger.info("%s:%s",key,value);
-        }
-        return "main/letter";
-
-    }
+//    @RequestMapping(value="letter.do",method = RequestMethod.GET)
+//    public String letter(HttpServletRequest request, HttpServletResponse response, ModelMap model){
+//        Map<String,String> map=new HashMap<>();
+//        for (Map.Entry<String,String> entry : map.entrySet()){
+//                  String key = entry.getKey();
+//                  String value = entry.getValue();
+//                  logger.info("%s:%s",key,value);
+//        }
+//        return "main/letter";
+//
+//    }
 
     @RequestMapping(value="logout.do",method = RequestMethod.GET)
     @ResponseBody
